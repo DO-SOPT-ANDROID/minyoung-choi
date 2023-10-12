@@ -27,7 +27,7 @@ class SignUpActivity :AppCompatActivity(){
                 Snackbar.make(
                     binding.root,
                     "회원가입 완료",
-                    Snackbar.LENGTH_LONG
+                    Snackbar.LENGTH_SHORT
                 ).show()
                 val intent= Intent (this,LoginActivity::class.java )
 
