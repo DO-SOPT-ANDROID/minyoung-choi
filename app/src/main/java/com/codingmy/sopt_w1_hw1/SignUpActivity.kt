@@ -28,17 +28,18 @@ class SignUpActivity :AppCompatActivity(){
                     binding.root,
                     "회원가입 완료",
                     Snackbar.LENGTH_SHORT
-                ).show()
-                val intent= Intent (this,LoginActivity::class.java )
+                ).setAction("확인") {
+                    val intent = Intent(this, LoginActivity::class.java)
 
-                //id pw 넘기기
-                intent.putExtra("id", binding.etSignupId.text.toString())
-                intent.putExtra("pw", binding.etSignupPw.text.toString())
-                intent.putExtra("nick", binding.etSignupNickname.text.toString())
-                intent.putExtra("mbti", binding.etSignupMbti.text.toString())
-                setResult(Activity.RESULT_OK, intent)
-                //창 이동
-                startActivity(intent)
+                    //id pw 넘기기
+                    intent.putExtra("id", binding.etSignupId.text.toString())
+                    intent.putExtra("pw", binding.etSignupPw.text.toString())
+                    intent.putExtra("nick", binding.etSignupNickname.text.toString())
+                    intent.putExtra("mbti", binding.etSignupMbti.text.toString())
+                    setResult(Activity.RESULT_OK, intent)
+                    //창 이동
+                    startActivity(intent)
+                }.show()
             }
             else{
                 Snackbar.make(

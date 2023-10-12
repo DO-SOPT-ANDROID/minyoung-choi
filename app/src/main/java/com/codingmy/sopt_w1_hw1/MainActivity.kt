@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                     binding.root,
                     "회원가입을 완료했습니다.",
                     Snackbar.LENGTH_SHORT
-                ).show()
+                ).setAction("확인"){}.show()
             }
         }
 

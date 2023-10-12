@@ -41,18 +41,19 @@ class LoginActivity :AppCompatActivity(){
                     binding.root,
                     "로그인을 성공했습니다.",
                     Snackbar.LENGTH_SHORT
-                ).show()
+                ).setAction("확인") {
 
-                //id, pw 정보 넘기기
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("id", sign_id)
-                intent.putExtra("pw", sign_pw)
-                intent.putExtra("nick", sign_nick)
-                intent.putExtra("mbti", sign_mbti)
-                setResult(Activity.RESULT_OK, intent)
+                    //id, pw 정보 넘기기
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("id", sign_id)
+                    intent.putExtra("pw", sign_pw)
+                    intent.putExtra("nick", sign_nick)
+                    intent.putExtra("mbti", sign_mbti)
+                    setResult(Activity.RESULT_OK, intent)
 
-                //회원정보 페이지로 이동
-                startActivity(intent)
+                    //회원정보 페이지로 이동
+                    startActivity(intent)
+                }.show()
             }
             //로그인 실패
             else
