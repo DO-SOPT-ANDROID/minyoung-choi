@@ -16,20 +16,13 @@ class LoginActivity :AppCompatActivity(){
 
     private lateinit var binding: ActivityLoginBinding
 
-    var id: String? = null
-    var pw: String? = null
-    var nick: String? = null
-    var mbti: String? = null
 
     val signUpActivityLuncher= registerForActivityResult(ActivityResultContracts.StartActivityForResult())
     { result ->
         if(result.resultCode==Activity.RESULT_OK)
         {
 
-            id = result.data?.getStringExtra("id")?: ""
-            pw = result.data?.getStringExtra("pw")?: ""
-            nick = result.data?.getStringExtra("nick")?: ""
-            mbti = result.data?.getStringExtra("mbti")?: ""
+
 
 
         }
@@ -41,6 +34,17 @@ class LoginActivity :AppCompatActivity(){
         binding= ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        var sign_id: String? = null
+        var sign_pw: String? = null
+        var sign_nick: String? = null
+        var sign_mbti: String? = null
+        sign_id = intent.getStringExtra("id")
+        sign_pw = intent.getStringExtra("pw")
+        sign_nick = intent.getStringExtra("nick")
+        sign_mbti = intent.getStringExtra("mbti")
+
+
+
         //로그인 버튼 클릭
         binding.btLogin.setOnClickListener {
 
@@ -48,7 +52,7 @@ class LoginActivity :AppCompatActivity(){
             val input_pw=binding.etLoginPw.text.toString()
 
             //id pw 일치여부 확인
-            if(id== input_id && pw ==input_pw)
+            if(sign_id== input_id && sign_pw ==input_pw)
             {
                 Snackbar.make(
                     binding.root,
@@ -68,7 +72,7 @@ class LoginActivity :AppCompatActivity(){
             {
                 Snackbar.make(
                     binding.root,
-                    "${input_id} ${id} ${input_pw} ${pw} 로그인을 실패했습니다.",
+                    "로그인을 실패했습니다.",
                     Snackbar.LENGTH_SHORT
                 ).show()
             }
