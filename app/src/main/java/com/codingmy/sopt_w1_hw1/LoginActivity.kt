@@ -1,30 +1,66 @@
 package com.codingmy.sopt_w1_hw1
 
+import android.app.Activity
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.codingmy.sopt_w1_hw1.databinding.ActivityLoginBinding
 import com.google.android.material.snackbar.Snackbar
 
 
 class LoginActivity :AppCompatActivity(){
+
     private lateinit var binding: ActivityLoginBinding
+
+    var id: String? = null
+    var pw: String? = null
+    var nick: String? = null
+    var mbti: String? = null
+
+    val signUpActivityLuncher= registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+    { result ->
+        if(result.resultCode==Activity.RESULT_OK)
+        {
+
+            id = result.data?.getStringExtra("id")?: ""
+            pw = result.data?.getStringExtra("pw")?: ""
+            nick = result.data?.getStringExtra("nick")?: ""
+            mbti = result.data?.getStringExtra("mbti")?: ""
+
+
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //로그인 버튼 클릭
         binding.btLogin.setOnClickListener {
-            //토스트 보이기
-            if(/*데이터 id, pw 일치시*/) {
+
+            val input_id=binding.etLoginId.text.toString()
+            val input_pw=binding.etLoginPw.text.toString()
+
+            //id pw 일치여부 확인
+            if(id== input_id && pw ==input_pw)
+            {
                 Snackbar.make(
                     binding.root,
                     "로그인을 성공했습니다.",
                     Snackbar.LENGTH_SHORT
                 ).show()
-                //메인페이지로 이동
-                val intent=Intent(this, MainActivity::class.java)
+
+                //id, pw 정보 넘기기
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("id", binding.etLoginId.text)
+                intent.putExtra("pw", binding.etLoginPw.text)
+                //회원정보 페이지로 이동
                 startActivity(intent)
             }
             //로그인 실패
@@ -32,13 +68,14 @@ class LoginActivity :AppCompatActivity(){
             {
                 Snackbar.make(
                     binding.root,
-                    "로그인을 실패했습니다.",
+                    "${input_id} ${id} ${input_pw} ${pw} 로그인을 실패했습니다.",
                     Snackbar.LENGTH_SHORT
-                )
+                ).show()
             }
         }
-
+        //가입 버튼 클릭
         binding.btSign.setOnClickListener {
+
             /*회원가입 페이지로 이동*/
             val intent=Intent(this, SignUpActivity::class.java)
             startActivity(intent)
@@ -49,5 +86,8 @@ class LoginActivity :AppCompatActivity(){
 
 
 
-
 }
+
+
+
+
