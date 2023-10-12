@@ -49,7 +49,7 @@
             android:layout_height="50dp"
             android:hint="비밀번호를 입력해주세요"
             android:id="@+id/et_login_pw"
-
+            android:inputType="textPassword"
             />
     </LinearLayout>
 

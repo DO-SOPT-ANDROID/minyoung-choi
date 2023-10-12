@@ -5,9 +5,6 @@ import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import com.codingmy.sopt_w1_hw1.databinding.ActivityMainBinding
 import android.content.Intent
-import android.view.View
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
 

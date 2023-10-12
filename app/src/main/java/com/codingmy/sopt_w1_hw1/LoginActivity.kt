@@ -1,12 +1,8 @@
 package com.codingmy.sopt_w1_hw1
 
 import android.app.Activity
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.EditText
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.codingmy.sopt_w1_hw1.databinding.ActivityLoginBinding
 import com.google.android.material.snackbar.Snackbar
@@ -54,6 +50,7 @@ class LoginActivity :AppCompatActivity(){
                 intent.putExtra("nick", sign_nick)
                 intent.putExtra("mbti", sign_mbti)
                 setResult(Activity.RESULT_OK, intent)
+
                 //회원정보 페이지로 이동
                 startActivity(intent)
             }
