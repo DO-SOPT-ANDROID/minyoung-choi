@@ -26,8 +26,11 @@ class SignUpActivity :AppCompatActivity(){
                             Snackbar.LENGTH_SHORT
                             )
                         val intent= Intent (this,LoginActivity::class.java )
+
                         //id pw 넘기기
-                        intent.putExtra(binding.etSignupId.text, binding.etSignupPw.text)
+                        intent.putExtra("id", binding.etSignupId.text)
+                        intent.putExtra("pw", binding.etSignupPw.text)
+
                         //창 이동
                         startActivity(intent)
             }
