@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.codingmy.sopt_w1_hw1.databinding.ActivitySignupBinding
 import com.google.android.material.snackbar.Snackbar
 import android.widget.Toast
+import android.app.Activity
 
 
 class SignUpActivity :AppCompatActivity(){
@@ -35,7 +36,7 @@ class SignUpActivity :AppCompatActivity(){
                 intent.putExtra("pw", binding.etSignupPw.text.toString())
                 intent.putExtra("nick", binding.etSignupNickname.text.toString())
                 intent.putExtra("mbti", binding.etSignupMbti.text.toString())
-
+                setResult(Activity.RESULT_OK, intent)
                 //창 이동
                 startActivity(intent)
             }
