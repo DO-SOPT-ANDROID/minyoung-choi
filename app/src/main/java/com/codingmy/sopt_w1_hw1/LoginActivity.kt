@@ -16,19 +16,6 @@ class LoginActivity :AppCompatActivity(){
 
     private lateinit var binding: ActivityLoginBinding
 
-
-    val signUpActivityLuncher= registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-    { result ->
-        if(result.resultCode==Activity.RESULT_OK)
-        {
-
-
-
-
-        }
-
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityLoginBinding.inflate(layoutInflater)
@@ -62,8 +49,11 @@ class LoginActivity :AppCompatActivity(){
 
                 //id, pw 정보 넘기기
                 val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("id", binding.etLoginId.text)
-                intent.putExtra("pw", binding.etLoginPw.text)
+                intent.putExtra("id", sign_id)
+                intent.putExtra("pw", sign_pw)
+                intent.putExtra("nick", sign_nick)
+                intent.putExtra("mbti", sign_mbti)
+                setResult(Activity.RESULT_OK, intent)
                 //회원정보 페이지로 이동
                 startActivity(intent)
             }
