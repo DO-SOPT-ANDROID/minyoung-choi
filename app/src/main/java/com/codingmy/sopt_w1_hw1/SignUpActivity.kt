@@ -23,13 +23,10 @@ class SignUpActivity :AppCompatActivity(){
             //가입 조건 확인
             if((binding.etSignupId.text.length<11 && binding.etSignupId.text.length>5) && (binding.etSignupPw.text.length<13 && binding.etSignupPw.text.length>7) && (binding.etSignupNickname.text.length>0 && !binding.etSignupNickname.text.isBlank() ))
             {
-                //스낵바 띄우기
-                Snackbar.make(
-                    binding.root,
-                    "회원가입 완료",
-                    Snackbar.LENGTH_SHORT
-                ).setAction("확인") {
-                    val intent = Intent(this, LoginActivity::class.java)
+                //토스트 띄우기
+                Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(this, LoginActivity::class.java)
 
                     //id pw 넘기기
                     intent.putExtra("id", binding.etSignupId.text.toString())
@@ -39,7 +36,7 @@ class SignUpActivity :AppCompatActivity(){
                     setResult(Activity.RESULT_OK, intent)
                     //창 이동
                     startActivity(intent)
-                }.show()
+
             }
             else{
                 Snackbar.make(
