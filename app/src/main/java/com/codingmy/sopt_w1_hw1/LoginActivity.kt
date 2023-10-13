@@ -3,6 +3,7 @@ package com.codingmy.sopt_w1_hw1
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.codingmy.sopt_w1_hw1.databinding.ActivityLoginBinding
 import com.google.android.material.snackbar.Snackbar
@@ -37,23 +38,20 @@ class LoginActivity :AppCompatActivity(){
             //id pw 일치여부 확인
             if(sign_id== input_id && sign_pw ==input_pw)
             {
-                Snackbar.make(
-                    binding.root,
-                    "로그인을 성공했습니다.",
-                    Snackbar.LENGTH_SHORT
-                ).setAction("확인") {
+                //토스트 띄우기
+                Toast.makeText(this, "로그인을 성공했습니다.", Toast.LENGTH_SHORT).show()
 
-                    //id, pw 정보 넘기기
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("id", sign_id)
-                    intent.putExtra("pw", sign_pw)
-                    intent.putExtra("nick", sign_nick)
-                    intent.putExtra("mbti", sign_mbti)
-                    setResult(Activity.RESULT_OK, intent)
+                //id, pw 정보 넘기기
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("id", sign_id)
+                intent.putExtra("pw", sign_pw)
+                intent.putExtra("nick", sign_nick)
+                intent.putExtra("mbti", sign_mbti)
+                setResult(Activity.RESULT_OK, intent)
 
-                    //회원정보 페이지로 이동
-                    startActivity(intent)
-                }.show()
+                //회원정보 페이지로 이동
+                startActivity(intent)
+
             }
             //로그인 실패
             else
