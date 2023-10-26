@@ -3,10 +3,10 @@ package com.codingmy.sopt_w1_hw1
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
-import com.codingmy.sopt_w1_hw1.databinding.ActivityMainBinding
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
+import org.sopt.dosopttemplate.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

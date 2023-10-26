@@ -1,17 +1,20 @@
-package com.codingmy.sopt_w1_hw1
+package org.sopt.dosopttemplate
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.codingmy.sopt_w1_hw1.databinding.ActivitySignupBinding
+
 import com.google.android.material.snackbar.Snackbar
 import android.widget.Toast
-import android.app.Activity
+//import com.codingmy.sopt_w1_hw1.databinding.ActivitySignupBinding
+import org.sopt.dosopttemplate.databinding.ActivitySignupBinding
 
 
 class SignUpActivity :AppCompatActivity(){
     private lateinit var binding: ActivitySignupBinding
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivitySignupBinding.inflate(layoutInflater)
@@ -33,7 +36,7 @@ class SignUpActivity :AppCompatActivity(){
                     intent.putExtra("pw", binding.etSignupPw.text.toString())
                     intent.putExtra("nick", binding.etSignupNickname.text.toString())
                     intent.putExtra("mbti", binding.etSignupMbti.text.toString())
-                    setResult(Activity.RESULT_OK, intent)
+                    setResult(RESULT_OK, intent)
                     //창 이동
                     startActivity(intent)
 

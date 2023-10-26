@@ -1,13 +1,18 @@
-package com.codingmy.sopt_w1_hw1
+package org.sopt.dosopttemplate
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.codingmy.sopt_w1_hw1.databinding.ActivityLoginBinding
+//import com.codingmy.sopt_w1_hw1.MainActivity
+import org.sopt.dosopttemplate.MainActivity
+
+
 import com.google.android.material.snackbar.Snackbar
 
+//이 코드 대신 아래 코드로 수정
+//import com.codingmy.sopt_w1_hw1.databinding.ActivityLoginBinding
+import org.sopt.dosopttemplate.databinding.ActivityLoginBinding
 
 class LoginActivity :AppCompatActivity(){
 
@@ -47,7 +52,7 @@ class LoginActivity :AppCompatActivity(){
                 intent.putExtra("pw", sign_pw)
                 intent.putExtra("nick", sign_nick)
                 intent.putExtra("mbti", sign_mbti)
-                setResult(Activity.RESULT_OK, intent)
+                setResult(RESULT_OK, intent)
 
                 //회원정보 페이지로 이동
                 startActivity(intent)
