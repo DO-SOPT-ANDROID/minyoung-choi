@@ -17,7 +17,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/bnv_home"/>
+        android:id="@+id/bnv_home"
+        app:menu="@menu/menu_mainhome"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
