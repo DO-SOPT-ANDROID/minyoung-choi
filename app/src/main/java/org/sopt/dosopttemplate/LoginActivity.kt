@@ -53,6 +53,13 @@ class LoginActivity :AppCompatActivity(){
                 intent.putExtra("nick", sign_nick)
                 intent.putExtra("mbti", sign_mbti)
                 setResult(RESULT_OK, intent)
+                //마이페이지에 id, pw 정보 넘기기
+                val intent1 = Intent(this, MyPageFragment::class.java)
+                intent1.putExtra("id", sign_id)
+                intent1.putExtra("pw", sign_pw)
+                intent1.putExtra("nick", sign_nick)
+                intent1.putExtra("mbti", sign_mbti)
+                setResult(RESULT_OK, intent1)
 
                 //메인홈페이지로 이동
                 startActivity(intent)

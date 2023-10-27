@@ -27,7 +27,9 @@
             <!--end-->
             <!---->
         </activity>
-        <activity android:name=".MainHomeActivity" android:exported="true"></activity>
+        <activity android:name=".MainHomeActivity" android:exported="true">
+
+        </activity>
         <activity android:name=".LoginActivity" android:exported="true"/>
     </application>
 
