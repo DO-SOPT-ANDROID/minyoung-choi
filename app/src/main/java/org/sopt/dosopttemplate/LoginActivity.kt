@@ -47,14 +47,14 @@ class LoginActivity :AppCompatActivity(){
                 Toast.makeText(this, "로그인을 성공했습니다.", Toast.LENGTH_SHORT).show()
 
                 //id, pw 정보 넘기기
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, MainHomeActivity::class.java)
                 intent.putExtra("id", sign_id)
                 intent.putExtra("pw", sign_pw)
                 intent.putExtra("nick", sign_nick)
                 intent.putExtra("mbti", sign_mbti)
                 setResult(RESULT_OK, intent)
 
-                //회원정보 페이지로 이동
+                //메인홈페이지로 이동
                 startActivity(intent)
 
             }
