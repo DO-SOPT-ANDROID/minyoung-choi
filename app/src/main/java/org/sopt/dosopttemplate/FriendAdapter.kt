@@ -23,7 +23,6 @@ class FriendAdapter(context: Context) : RecyclerView.Adapter<FriendViewHolder>()
 
     override fun getItemCount() = friendList.size
 
-    // 임시 리스트에 준비해둔 가짜 리스트를 연결하는 함수
     fun setFriendList(friendList: List<Friend>) {
         this.friendList = friendList.toList()
         notifyDataSetChanged()

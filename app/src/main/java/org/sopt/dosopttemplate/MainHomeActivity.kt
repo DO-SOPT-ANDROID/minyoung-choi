@@ -2,7 +2,9 @@ package org.sopt.dosopttemplate
 
 import androidx.appcompat.app.AppCompatActivity
 import android.app.TaskStackBuilder
+import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.Fragment
 import org.sopt.dosopttemplate.databinding.ActivityMainhomeBinding
 
@@ -12,7 +14,23 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainhomeBinding.inflate(layoutInflater)
+         lateinit var viewBinding: ActivityResultLauncher<Intent>
+
         setContentView(binding.root)
+
+        var id:String? = intent.getStringExtra("id")
+        var nick:String? = intent.getStringExtra("nick")
+        var mbti:String? =  intent.getStringExtra("mbti")
+        var pw:String? = intent.getStringExtra("pw")
+
+        //이전 페이지에서 id pw 전달했을 때
+        if (intent.hasExtra("id")) {
+            var id = intent.getStringExtra("id")
+            var nick = intent.getStringExtra("nick")
+            var mbti = intent.getStringExtra("mbti")
+            var pw = intent.getStringExtra("pw")
+
+        }
 
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_home)
         if (currentFragment == null) {
@@ -47,8 +65,6 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    // Activity에서 Fragment를 다뤄야 하니 supportFragmentManager를 사용합니다.
-// 트렌젝션을 시작하고 replace 메서드를 통해 Fragment를 교체합니다.
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fcv_home, fragment)
