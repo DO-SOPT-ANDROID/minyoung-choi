@@ -77,7 +77,8 @@ class MainHomeActivity : AppCompatActivity() {
     {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.rv_friends, fragment)
-        transaction.commit()
+            .addToBackStack(null)
+            .commit()
     }
 
     //프래그먼트에 데이터 전달
@@ -88,8 +89,6 @@ class MainHomeActivity : AppCompatActivity() {
         bundle.putString("nick", nick)
         bundle.putString("mbti", mbti)
         bundle.putString("pw", pw)
-
-        Log.d("BasicSyntax","로그를 출력합니다. method = Log.d")
 
         val myPageFragment = MyPageFragment()
         myPageFragment.arguments = bundle
