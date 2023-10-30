@@ -14,13 +14,13 @@ import com.google.android.material.snackbar.Snackbar
 //import com.codingmy.sopt_w1_hw1.databinding.ActivityLoginBinding
 import org.sopt.dosopttemplate.databinding.ActivityLoginBinding
 
-class LoginActivity :AppCompatActivity(){
+class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         var sign_id: String? = null
@@ -33,16 +33,14 @@ class LoginActivity :AppCompatActivity(){
         sign_mbti = intent.getStringExtra("mbti")
 
 
-
         //로그인 버튼 클릭
         binding.btLogin.setOnClickListener {
 
-            val input_id=binding.etLoginId.text.toString()
-            val input_pw=binding.etLoginPw.text.toString()
+            val input_id = binding.etLoginId.text.toString()
+            val input_pw = binding.etLoginPw.text.toString()
 
             //id pw 일치여부 확인
-            if(sign_id== input_id && sign_pw ==input_pw)
-            {
+            if (sign_id == input_id && sign_pw == input_pw) {
                 //토스트 띄우기
                 Toast.makeText(this, "로그인을 성공했습니다.", Toast.LENGTH_SHORT).show()
 
@@ -52,22 +50,13 @@ class LoginActivity :AppCompatActivity(){
                 intent.putExtra("pw", sign_pw)
                 intent.putExtra("nick", sign_nick)
                 intent.putExtra("mbti", sign_mbti)
-                setResult(RESULT_OK, intent)
-                //마이페이지에 id, pw 정보 넘기기
-                val intent1 = Intent(this, MyPageFragment::class.java)
-                intent1.putExtra("id", sign_id)
-                intent1.putExtra("pw", sign_pw)
-                intent1.putExtra("nick", sign_nick)
-                intent1.putExtra("mbti", sign_mbti)
-                setResult(RESULT_OK, intent1)
 
                 //메인홈페이지로 이동
                 startActivity(intent)
 
             }
             //로그인 실패
-            else
-            {
+            else {
                 Snackbar.make(
                     binding.root,
                     "로그인을 실패했습니다.",
@@ -79,13 +68,12 @@ class LoginActivity :AppCompatActivity(){
         binding.btSign.setOnClickListener {
 
             /*회원가입 페이지로 이동*/
-            val intent=Intent(this, SignUpActivity::class.java)
+            val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
 
         }
 
     }
-
 
 
 }
