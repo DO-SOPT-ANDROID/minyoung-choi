@@ -13,16 +13,14 @@ import org.sopt.dosopttemplate.databinding.ActivityMainhomeBinding
 
 class MainHomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainhomeBinding
-     var id:String=""
-     var nick:String=""
-    var mbti:String=""
-     var pw:String=""
+    var id: String = ""
+    var nick: String = ""
+    var mbti: String = ""
+    var pw: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainhomeBinding.inflate(layoutInflater)
-        lateinit var viewBinding: ActivityResultLauncher<Intent>
-
         setContentView(binding.root)
 
         var id = intent.getStringExtra("id")
@@ -53,10 +51,6 @@ class MainHomeActivity : AppCompatActivity() {
                 }
 
                 R.id.menu_mypage -> {
-
-                    //argument를 통해 fragment로 데이터 전달
-                    setDataFragment(MyPageFragment(), id, pw, nick, mbti)
-
                     replaceFragment(MyPageFragment())
                     true
                 }
@@ -70,28 +64,5 @@ class MainHomeActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fcv_home, fragment)
             .commit()
-    }
-
-    //프래그먼트 띄우기
-    fun setFragment(fragment: Fragment)
-    {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.rv_friends, fragment)
-            .addToBackStack(null)
-            .commit()
-    }
-
-    //프래그먼트에 데이터 전달
-    fun setDataFragment(fragment: Fragment, id: String, pw:String, nick: String, mbti: String )
-    {
-        val bundle=Bundle()
-        bundle.putString("id", id)
-        bundle.putString("nick", nick)
-        bundle.putString("mbti", mbti)
-        bundle.putString("pw", pw)
-
-        val myPageFragment = MyPageFragment()
-        myPageFragment.arguments = bundle
-        setFragment(myPageFragment)
     }
 }

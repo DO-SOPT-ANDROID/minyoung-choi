@@ -30,6 +30,7 @@ class MyPageFragment : Fragment(){
         var nick = arguments?.getString("nick")
         var mbti = arguments?.getString("mbti")
         var pw = arguments?.getString("pw")
+        Toast.makeText(requireContext(), "sadfasd" + id+"/pw"+pw, Toast.LENGTH_SHORT).show()
 
         if (id != null) {
             // 데이터가 null이 아닌 경우 처리
@@ -41,6 +42,9 @@ class MyPageFragment : Fragment(){
         binding.tvMainID.text=id
         binding.tvMainNick.text=nick
         binding.tvMainMbti.text=mbti
+
+        //토스트 띄우기
+        Toast.makeText( requireContext(),"id."+id, Toast.LENGTH_SHORT).show()
 
 
     }
