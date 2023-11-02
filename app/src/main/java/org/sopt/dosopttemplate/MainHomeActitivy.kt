@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import org.sopt.dosopttemplate.databinding.ActivityMainhomeBinding
 
 
@@ -27,6 +28,15 @@ class MainHomeActivity : AppCompatActivity() {
         var nick: String? = intent.getStringExtra("nick")
         var mbti: String? = intent.getStringExtra("mbti")
         var pw: String? = intent.getStringExtra("pw")
+
+
+        //데이터 수신 확인용- 여기도 손상된 data 수신
+        Snackbar.make(
+            binding.root,
+            "id"+id,
+            Snackbar.LENGTH_SHORT
+        ).setAction("확인"){}.show()
+
 
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_home)
         if (currentFragment == null) {

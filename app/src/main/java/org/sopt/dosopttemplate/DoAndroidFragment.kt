@@ -28,6 +28,8 @@ class DoAndroidFragment : Fragment() {
         var nick = arguments?.getString("nick")
         var mbti = arguments?.getString("mbti")
         var pw = arguments?.getString("pw")
+
+        //null 값으로 data 전달 안됨
         Toast.makeText(requireContext(), "sadfasd" + id+"/pw"+pw, Toast.LENGTH_SHORT).show()
     }
 

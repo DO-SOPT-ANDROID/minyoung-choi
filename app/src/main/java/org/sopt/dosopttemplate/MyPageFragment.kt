@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import org.sopt.dosopttemplate.databinding.ActivityMainBinding
+import org.sopt.dosopttemplate.databinding.FragmentMypageBinding
 
 class MyPageFragment : Fragment(){
-    private lateinit var binding: ActivityMainBinding
+    private var _binding: FragmentMypageBinding? =null
+    private val binding: FragmentMypageBinding get()= _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,8 +20,13 @@ class MyPageFragment : Fragment(){
         savedInstanceState: Bundle?
 
     ): View? {
+        _binding = FragmentMypageBinding.inflate(layoutInflater)
 
-        return super.onCreateView(inflater, container, savedInstanceState)
+        //fragment 안보였던 이슈 해결
+        //아래 말고 return binding.root, _binding 추가
+        // return super.onCreateView(inflater, container, savedInstanceState)
+        return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,14 +37,14 @@ class MyPageFragment : Fragment(){
         var nick = arguments?.getString("nick")
         var mbti = arguments?.getString("mbti")
         var pw = arguments?.getString("pw")
+
+        //null 값으로 data 전달 x
         Toast.makeText(requireContext(), "sadfasd" + id+"/pw"+pw, Toast.LENGTH_SHORT).show()
 
         if (id != null) {
             // 데이터가 null이 아닌 경우 처리
             Toast.makeText(requireContext(), "id: $id", Toast.LENGTH_SHORT).show()
         }
-
-        Toast.makeText(requireContext(), "id: "+id, Toast.LENGTH_SHORT).show()
 
         binding.tvMainID.text=id
         binding.tvMainNick.text=nick
