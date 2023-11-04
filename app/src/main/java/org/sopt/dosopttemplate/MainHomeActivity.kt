@@ -1,41 +1,37 @@
 package org.sopt.dosopttemplate
 
 import androidx.appcompat.app.AppCompatActivity
-import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Nickname
-import android.util.Log
-import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.Fragment
-import com.google.android.material.snackbar.Snackbar
 import org.sopt.dosopttemplate.databinding.ActivityMainhomeBinding
 
 
 class MainHomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainhomeBinding
-    var id: String = ""
-    var nick: String = ""
-    var mbti: String = ""
-    var pw: String = ""
+//    var id: String = ""
+//    var nick: String = ""
+//    var mbti: String = ""
+//    var pw: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainhomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var id = intent.getStringExtra("id")
-        var nick: String? = intent.getStringExtra("nick")
-        var mbti: String? = intent.getStringExtra("mbti")
-        var pw: String? = intent.getStringExtra("pw")
+        val receivedUserInfoList = intent.getStringArrayListExtra("userInfoList")
+//        var id = intent.getStringExtra("id")
+//        var nick: String? = intent.getStringExtra("nick")
+//        var mbti: String? = intent.getStringExtra("mbti")
+//        var pw: String? = intent.getStringExtra("pw")
 
 
-        //데이터 수신 확인용- 여기도 손상된 data 수신
-        Snackbar.make(
-            binding.root,
-            "id"+id,
-            Snackbar.LENGTH_SHORT
-        ).setAction("확인"){}.show()
+        //데이터 수신 확인용- 여기까지는 정상 data 수신
+        //확인 완료
+//        Snackbar.make(
+//            binding.root,
+//            "id"+id,
+//            Snackbar.LENGTH_SHORT
+//        ).setAction("확인"){}.show()
 
 
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_home)
