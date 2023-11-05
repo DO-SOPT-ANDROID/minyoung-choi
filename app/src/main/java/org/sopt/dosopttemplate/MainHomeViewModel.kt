@@ -1,8 +1,19 @@
 package org.sopt.dosopttemplate
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainHomeViewModel : ViewModel() {
+    private val loginUserInfo=MutableLiveData<User>()
+
+    val vurrentValue: LiveData<User>
+        get()=loginUserInfo
+
+    init{
+    }
+
+
     //viewModel에 친구 리스트 저장
     val mockFriendList = listOf<Friend>(
         Friend(
