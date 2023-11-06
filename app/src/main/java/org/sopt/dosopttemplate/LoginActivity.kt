@@ -37,9 +37,6 @@ class LoginActivity : AppCompatActivity() {
                 //id, pw 정보 넘기기
                 val intent = Intent(this, MainHomeActivity::class.java)
                 intent.putExtra("userInfoList", receivedUserInfoList)
-//                intent.putExtra("pw", sign_pw)
-//                intent.putExtra("nick", sign_nick)
-//                intent.putExtra("mbti", sign_mbti)
 
                 //메인홈페이지로 이동
                 startActivity(intent)
@@ -55,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
         //가입 버튼 클릭
         binding.btSign.setOnClickListener {
 
-            /*회원가입 페이지로 이동*/
+            //회원가입 페이지로 이동
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
 

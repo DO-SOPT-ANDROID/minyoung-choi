@@ -9,7 +9,7 @@ class FriendViewHolder(private val binding: ItemFriendBinding) :
 
     fun onBind(friendData: Friend) {
         binding.ivProfile.setImageResource(friendData.profileImage)
-        binding.tvName.text= friendData.name
-        binding.tvSelfDecription.text= friendData.self_description
+        binding.tvName.text = friendData.name
+        binding.tvSelfDecription.text = friendData.self_description
     }
 }

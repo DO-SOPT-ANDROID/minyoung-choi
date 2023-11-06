@@ -38,12 +38,8 @@ class SignUpActivity : AppCompatActivity() {
                 )
                 //id pw 넘기기
                 intent.putStringArrayListExtra("userInfoList", ArrayList(userInfoList))
-                //    intent.putExtra("id", binding.etSignupId.text.toString())
-                //    intent.putExtra("pw", binding.etSignupPw.text.toString())
-                //    intent.putExtra("nick", binding.etSignupNickname.text.toString())
-                //    intent.putExtra("mbti", binding.etSignupMbti.text.toString())
                 setResult(RESULT_OK, intent)
-                //창 이동
+                //액티비티 이동
                 startActivity(intent)
 
             } else {
