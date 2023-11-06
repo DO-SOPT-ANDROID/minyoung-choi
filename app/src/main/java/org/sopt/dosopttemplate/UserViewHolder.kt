@@ -1,9 +1,9 @@
 package org.sopt.dosopttemplate
 
 import androidx.recyclerview.widget.RecyclerView
-import org.sopt.dosopttemplate.databinding.ItemMyprofilBinding
+import org.sopt.dosopttemplate.databinding.ItemUserBinding
 
-class UserViewHolder(private val binding: ItemMyprofilBinding) :
+class UserViewHolder(private val binding: ItemUserBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun onBind(userData: User) {

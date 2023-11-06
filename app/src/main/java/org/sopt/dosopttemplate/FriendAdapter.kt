@@ -10,7 +10,7 @@ class FriendAdapter(context: Context) : RecyclerView.Adapter<FriendViewHolder>()
     private val inflater by lazy { LayoutInflater.from(context) }
 
     // 임시의 빈 리스트
-    private var friendList: List<Friend> = emptyList()
+    private var FriendList: List<Friend> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendViewHolder {
         val binding = ItemFriendBinding.inflate(inflater, parent, false)
@@ -18,13 +18,13 @@ class FriendAdapter(context: Context) : RecyclerView.Adapter<FriendViewHolder>()
     }
 
     override fun onBindViewHolder(holder: FriendViewHolder, position: Int) {
-        holder.onBind(friendList[position])
+        holder.onBind(FriendList[position])
     }
 
-    override fun getItemCount() = friendList.size
+    override fun getItemCount() = FriendList.size
 
     fun setFriendList(friendList: List<Friend>) {
-        this.friendList = friendList.toList()
+        this.FriendList = friendList.toList()
         notifyDataSetChanged()
     }
 }
