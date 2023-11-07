@@ -24,21 +24,15 @@ class SignUpActivity : AppCompatActivity() {
         binding.btSignupButton.setOnClickListener {
 
             //가입 조건 확인
-            if ((binding.etSignupId.text.length < 11 && binding.etSignupId.text.length > 5) && (binding.etSignupPw.text.length < 13 && binding.etSignupPw.text.length > 7) && (binding.etSignupNickname.text.length > 0 && !binding.etSignupNickname.text.isBlank())) {
+            if (checkCondition()) {
                 //토스트 띄우기
                 Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, LoginActivity::class.java)
                 //유저정보 -> 리스트로 구성
-                val userInfoList = listOf<String>(
-                    binding.etSignupId.text.toString(),
-                    binding.etSignupPw.text.toString(),
-                    binding.etSignupNickname.text.toString(),
-                    binding.etSignupMbti.text.toString()
-                )
-                //id pw 넘기기
-                intent.putStringArrayListExtra("userInfoList", ArrayList(userInfoList))
-                setResult(RESULT_OK, intent)
+                val userInfoList = UserInfoToListString()
+
+                sendUserInfo(intent, userInfoList)
                 //액티비티 이동
                 startActivity(intent)
 
@@ -51,6 +45,28 @@ class SignUpActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    private fun checkCondition() =
+        (binding.etSignupId.text.length < 11 && binding.etSignupId.text.length > 5) && (binding.etSignupPw.text.length < 13 && binding.etSignupPw.text.length > 7) && (binding.etSignupNickname.text.length > 0 && !binding.etSignupNickname.text.isBlank())
+
+    private fun sendUserInfo(
+        intent: Intent,
+        userInfoList: List<String>
+    ) {
+        //id pw 넘기기
+        intent.putStringArrayListExtra("userInfoList", ArrayList(userInfoList))
+        setResult(RESULT_OK, intent)
+    }
+
+    private fun UserInfoToListString(): List<String> {
+        val userInfoList = listOf<String>(
+            binding.etSignupId.text.toString(),
+            binding.etSignupPw.text.toString(),
+            binding.etSignupNickname.text.toString(),
+            binding.etSignupMbti.text.toString()
+        )
+        return userInfoList
     }
 }
 

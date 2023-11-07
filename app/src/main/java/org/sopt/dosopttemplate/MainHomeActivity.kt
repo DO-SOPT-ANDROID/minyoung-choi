@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import org.sopt.dosopttemplate.databinding.ActivityMainhomeBinding
+import java.util.ArrayList
 
 
 class MainHomeActivity : AppCompatActivity() {
@@ -22,13 +23,7 @@ class MainHomeActivity : AppCompatActivity() {
         //intent로 StringArrayList 형태로 받기
         var receivedUserInfoList = intent.getStringArrayListExtra("userInfoList")!!
 
-
-        //sharedpreference로 유저 data 넘기기
-        MyApplication.prefs.setString("id", receivedUserInfoList[0])
-        MyApplication.prefs.setString("pw", receivedUserInfoList[1])
-        MyApplication.prefs.setString("nick", receivedUserInfoList[2])
-        MyApplication.prefs.setString("mbti", receivedUserInfoList[3])
-
+        setUserInfoPrefs(receivedUserInfoList)
 
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_home)
         if (currentFragment == null) {
@@ -37,6 +32,14 @@ class MainHomeActivity : AppCompatActivity() {
                 .commit()
         }
         clickBottomNavigation()
+    }
+
+    //sharedpreference로 유저 data 넘기기
+    private fun setUserInfoPrefs(receivedUserInfoList: ArrayList<String>) {
+        MyApplication.prefs.setString("id", receivedUserInfoList[0])
+        MyApplication.prefs.setString("pw", receivedUserInfoList[1])
+        MyApplication.prefs.setString("nick", receivedUserInfoList[2])
+        MyApplication.prefs.setString("mbti", receivedUserInfoList[3])
     }
 
     private fun clickBottomNavigation() {

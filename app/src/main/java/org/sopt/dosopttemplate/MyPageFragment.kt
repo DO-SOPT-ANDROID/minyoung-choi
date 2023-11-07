@@ -26,6 +26,10 @@ class MyPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         activity?.getSharedPreferences("data", Context.MODE_PRIVATE)
 
+        getUserInfo()
+    }
+
+    private fun getUserInfo() {
         //sharedPreferenced 로 유저 정보 받기
         binding.tvMainID.text = MyApplication.prefs.getString("id", "")
         binding.tvMainMbti.text = MyApplication.prefs.getString("nick", "")

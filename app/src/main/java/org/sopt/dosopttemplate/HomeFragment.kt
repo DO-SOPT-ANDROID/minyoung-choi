@@ -33,16 +33,8 @@ class HomeFragment : Fragment() {
         val friendAdapter = FriendAdapter(requireContext())
         friendAdapter.setFriendList(viewModel.mockFriendList)
 
-        //userAdapter로 넘길 User 객체에 기존 유저정보 이식
-        var userData = User(
-            R.drawable.pr_image,
-            MyApplication.prefs.getString("nick", ""),
-            "",
-            MyApplication.prefs.getString("id", ""),
-            MyApplication.prefs.getString("pw", ""),
-            MyApplication.prefs.getString("mbti", ""),
-        )
-        //유저 정보 생성
+        //유저 리스트 생성
+        var userData = getUserInfoToUser()
         val userAdapter = UserAdapter(requireContext())
         userAdapter.setUserList(listOf(userData))
 
@@ -52,8 +44,20 @@ class HomeFragment : Fragment() {
         binding.rvFriends.adapter = concatAdapter
     }
 
+    //userAdapter로 넘길 User 객체에 기존 유저정보 이식
+    private fun getUserInfoToUser(): User {
+        var userData = User(
+            R.drawable.pr_image,
+            MyApplication.prefs.getString("nick", ""),
+            "",
+            MyApplication.prefs.getString("id", ""),
+            MyApplication.prefs.getString("pw", ""),
+            MyApplication.prefs.getString("mbti", ""),
+        )
+        return userData
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 }
