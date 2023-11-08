@@ -11,21 +11,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoSoptTemplate"
-        tools:targetApi="31">
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-        </activity>
-        <activity android:name=".LoginActivity" android:exported="true">
+        tools:targetApi="31"
+        android:name=".MyApplication">
+        <activity android:name=".SignUpActivity" android:exported="true">
+            <!--Could not identify launch Activity: Default Activity not found 에러 fix목적으로 추가-->
+            <!--추가한 코드 start-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <!--end-->
+            <!---->
+        </activity>
+        <activity android:name=".MainHomeActivity" android:exported="false">
 
         </activity>
-
-        <activity android:name=".SignUpActivity" android:exported="true"/>
+        <activity android:name=".LoginActivity" android:exported="false"/>
     </application>
 
 </manifest>
