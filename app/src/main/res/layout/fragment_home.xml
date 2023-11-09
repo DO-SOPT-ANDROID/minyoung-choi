@@ -14,4 +14,14 @@
         tools:listitem="@layout/item_friend"
         />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_to_top"
+        android:layout_width="50dp"
+        android:layout_height="48dp"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_to_top"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
