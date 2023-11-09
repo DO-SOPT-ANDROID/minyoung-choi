@@ -24,5 +24,14 @@
         android:id="@+id/bnv_home"
         app:menu="@menu/menu_mainhome"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="48dp"
+        android:layout_height="40dp"
+        android:id="@+id/fab_to_top"
+        android:src="@drawable/ic_to_top"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@id/bnv_home"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
