@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
         upScrollListener(binding.rvFriends)
     }
 
-    fun upScrollListener(view: RecyclerView?) {
+    fun upScrollListener() {
         //fab 클릭시 스크롤 상단으로 이동
         binding.fabToTop.setOnClickListener {
             binding.rvFriends.smoothScrollToPosition(0)
