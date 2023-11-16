@@ -5,6 +5,7 @@ package org.sopt.dosopttemplate
 
 //이 코드 대신 아래 코드로 수정
 //import com.codingmy.sopt_w1_hw1.databinding.ActivityLoginBinding
+import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -82,13 +83,14 @@ class LoginActivity : AppCompatActivity() {
                     ) {
                         if (response.isSuccessful) {
                             val data: ResponseLoginDto = response.body()!!
-                            val userId = data.id
+                            val userId:Int = data.id
                             Toast.makeText(
                                 this@LoginActivity,
-                                "로그인이 성공하였고 유저의 ID는 $userId 입니둥",
+                                "로그인 성공, 유저의 ID는 $userId 입니다",
                                 Toast.LENGTH_SHORT,
                             ).show()
                             val intent = Intent(this@LoginActivity, MainHomeActivity::class.java)
+                            intent.putExtra("id", id)
                             startActivity(intent)
                         }
                     }
