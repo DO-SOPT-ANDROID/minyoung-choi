@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
+import androidx.recyclerview.widget.RecyclerView
 import org.sopt.dosopttemplate.databinding.FragmentHomeBinding
 
 
@@ -42,6 +43,17 @@ class HomeFragment : Fragment() {
         val concatAdapter = ConcatAdapter(userAdapter, friendAdapter)
         //concat된 list를 fragment영역에 적용
         binding.rvFriends.adapter = concatAdapter
+
+        //fab 상단 스크롤 지원
+        upScrollListener(binding.rvFriends)
+    }
+
+    fun upScrollListener() {
+        //fab 클릭시 스크롤 상단으로 이동
+        binding.fabToTop.setOnClickListener {
+            binding.rvFriends.smoothScrollToPosition(0)
+        }
+
     }
 
     //userAdapter로 넘길 User 객체에 기존 유저정보 이식

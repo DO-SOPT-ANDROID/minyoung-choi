@@ -31,6 +31,10 @@ class MainHomeActivity : AppCompatActivity() {
                 .add(R.id.fcv_home, HomeFragment())
                 .commit()
         }
+
+        //하단 버튼 선택 초기값 설정
+        binding.bnvHome.setSelectedItemId(R.id.menu_home)
+
         clickBottomNavigation()
     }
 
