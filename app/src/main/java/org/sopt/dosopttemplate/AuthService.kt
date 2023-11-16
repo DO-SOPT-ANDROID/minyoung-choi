@@ -1,8 +1,10 @@
 package org.sopt.dosopttemplate
 
+import org.sopt.dosopttemplate.retrofit2data.RequestInquiryDto
 import retrofit2.Call
 import org.sopt.dosopttemplate.retrofit2data.RequestLoginDto
 import org.sopt.dosopttemplate.retrofit2data.RequestSignUpDto
+import org.sopt.dosopttemplate.retrofit2data.ResponseInquiryDto
 import org.sopt.dosopttemplate.retrofit2data.ResponseLoginDto
 import org.sopt.dosopttemplate.retrofit2data.ResponseSignUpDto
 import retrofit2.http.Body
@@ -16,5 +18,9 @@ interface AuthService {
 
     fun signUp(
         @Body request: RequestSignUpDto,
-    ):Call<ResponseSignUpDto>
+    ): Call<ResponseSignUpDto>
+
+    fun inquiry(
+        @Body request: RequestInquiryDto,
+    ): Call<ResponseInquiryDto>
 }
