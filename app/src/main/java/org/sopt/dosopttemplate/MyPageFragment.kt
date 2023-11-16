@@ -31,8 +31,8 @@ class MyPageFragment : Fragment() {
 
     private fun getUserInfo() {
         //sharedPreferenced 로 유저 정보 받기
-        binding.mypageTvMyID.text = MyApplication.prefs.getString("id", "")
-        binding.mypageTvMyMbti.text = MyApplication.prefs.getString("mbti", "")
+        binding.mypageTvMyID.text = MyApplication.prefs.getString("username", "")
+        binding.mypageTvMyMbti.text = MyApplication.prefs.getString("id", "")
         binding.mypageTvMyNick.text = MyApplication.prefs.getString("nick", "")
     }
 

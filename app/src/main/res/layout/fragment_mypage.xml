@@ -72,11 +72,14 @@
         android:text="아이디"
         android:textSize="20dp" />
 
+    <!--기존은 mbti를 보여주는 항목이었으나 회원의 id를 보여주는 항목으로 수정
+        이후 mbti data 사용 여부 확인 후 id 수정 등 진행할 계획,
+        현재는 id 변경 작업 보류-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingVertical="15dp"
-        android:text="mbti"
+        android:text="회원일렬번호"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
