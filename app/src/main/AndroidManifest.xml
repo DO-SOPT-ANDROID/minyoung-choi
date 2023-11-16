@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--retrofit2 권한 설정-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,9 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoSoptTemplate"
-        tools:targetApi="31"
-        android:name=".MyApplication">
-        <activity android:name=".SignUpActivity" android:exported="true">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="true">
             <!--Could not identify launch Activity: Default Activity not found 에러 fix목적으로 추가-->
             <!--추가한 코드 start-->
             <intent-filter>
@@ -24,10 +30,14 @@
             <!--end-->
             <!---->
         </activity>
-        <activity android:name=".MainHomeActivity" android:exported="false">
+        <activity
+            android:name=".MainHomeActivity"
+            android:exported="false">
 
         </activity>
-        <activity android:name=".LoginActivity" android:exported="false"/>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
