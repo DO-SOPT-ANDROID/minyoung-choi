@@ -42,16 +42,16 @@ class HomeFragment : Fragment() {
         //concatAdapter로 두 리스트 concat
         val concatAdapter = ConcatAdapter(userAdapter, friendAdapter)
         //concat된 list를 fragment영역에 적용
-        binding.rvFriends.adapter = concatAdapter
+        binding.homeRvFriends.adapter = concatAdapter
 
         //fab 상단 스크롤 지원
-        upScrollListener(binding.rvFriends)
+        upScrollListener(binding.homeRvFriends)
     }
 
     fun upScrollListener(view: RecyclerView) =with(binding) {
         //fab 클릭시 스크롤 상단으로 이동
-        fabToTop.setOnClickListener {
-            rvFriends.smoothScrollToPosition(0)
+        homeFabToTop.setOnClickListener {
+            homeRvFriends.smoothScrollToPosition(0)
         }
 
     }

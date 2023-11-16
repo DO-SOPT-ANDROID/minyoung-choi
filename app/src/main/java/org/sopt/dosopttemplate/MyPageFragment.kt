@@ -31,9 +31,9 @@ class MyPageFragment : Fragment() {
 
     private fun getUserInfo() {
         //sharedPreferenced 로 유저 정보 받기
-        binding.tvMainID.text = MyApplication.prefs.getString("id", "")
-        binding.tvMainMbti.text = MyApplication.prefs.getString("mbti", "")
-        binding.tvMainNick.text = MyApplication.prefs.getString("nick", "")
+        binding.mypageTvMyID.text = MyApplication.prefs.getString("id", "")
+        binding.mypageTvMyMbti.text = MyApplication.prefs.getString("mbti", "")
+        binding.mypageTvMyNick.text = MyApplication.prefs.getString("nick", "")
     }
 
     override fun onDestroyView() {
