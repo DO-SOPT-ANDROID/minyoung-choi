@@ -1,14 +1,22 @@
 package org.sopt.dosopttemplate
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
+import org.sopt.dosopttemplate.ServicePool.authService
 import org.sopt.dosopttemplate.databinding.ActivityMainhomeBinding
+import org.sopt.dosopttemplate.retrofit2data.RequestInquiryDto
+import org.sopt.dosopttemplate.retrofit2data.ResponseInquiryDto
+import org.sopt.dosopttemplate.retrofit2data.ResponseLoginDto
+import retrofit2.Call
+import retrofit2.Response
 import java.util.ArrayList
 
 
@@ -22,8 +30,8 @@ class MainHomeActivity : AppCompatActivity() {
 
         //intent로 StringArrayList 형태로 받기
         var receivedUserInfoList = intent.getStringArrayListExtra("userInfoList")!!
-
-        setUserInfoPrefs(receivedUserInfoList)
+        var id = intent.getIntExtra("id")
+        //setUserInfoPrefs(receivedUserInfoList)
 
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_home)
         if (currentFragment == null) {
@@ -38,6 +46,7 @@ class MainHomeActivity : AppCompatActivity() {
         clickBottomNavigation()
     }
 
+/*
     //sharedpreference로 유저 data 넘기기
     private fun setUserInfoPrefs(receivedUserInfoList: ArrayList<String>) {
         MyApplication.prefs.setString("id", receivedUserInfoList[0])
@@ -45,6 +54,7 @@ class MainHomeActivity : AppCompatActivity() {
         MyApplication.prefs.setString("nick", receivedUserInfoList[2])
         MyApplication.prefs.setString("mbti", receivedUserInfoList[3])
     }
+*/
 
     private fun clickBottomNavigation() {
 
@@ -61,6 +71,7 @@ class MainHomeActivity : AppCompatActivity() {
                 }
 
                 R.id.menu_mypage -> {
+                    inquiryUserInfo(id)
                     replaceFragment(MyPageFragment())
                     true
                 }
@@ -74,5 +85,32 @@ class MainHomeActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fcv_home, fragment)
             .commit()
+    }
+
+    private fun inquiryUserInfo(id:Int)
+    {
+        authService.inquiry(RequestInquiryDto(id))
+            .enqueue(object :retrofit2.Callback<ResponseInquiryDto> {
+                override fun onResponse(
+                    call: Call<ResponseInquiryDto>,
+                    response: Response<ResponseInquiryDto>,
+                ) {
+                    if (response.isSuccessful) {
+                        val data: ResponseInquiryDto = response.body()!!
+                        val userNickname = data.nickname
+                        val userUsername = data.username
+
+                        //sharedpreference로 넘기기
+                        MyApplication.prefs.setString("nick", userNickname)
+                        MyApplication.prefs.setString("username", userUsername)
+                        MyApplication.prefs.setString("id", id.toString())
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseInquiryDto>, t: Throwable) {
+                    Toast.makeText(this@MainHomeActivity, "서버 에러 발생", Toast.LENGTH_SHORT).show()
+                }
+            }
+            )
     }
 }
