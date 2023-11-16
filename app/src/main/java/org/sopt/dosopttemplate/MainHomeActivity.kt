@@ -30,7 +30,6 @@ class MainHomeActivity : AppCompatActivity() {
 
         //intent로 StringArrayList 형태로 받기
         var receivedUserInfoList = intent.getStringArrayListExtra("userInfoList")!!
-        var id = intent.getIntExtra("id")
         //setUserInfoPrefs(receivedUserInfoList)
 
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_home)
@@ -57,6 +56,7 @@ class MainHomeActivity : AppCompatActivity() {
 */
 
     private fun clickBottomNavigation() {
+        var userId= intent.getIntExtra("id")
 
         binding.bnvHome.setOnItemSelectedListener {
             when (it.itemId) {
@@ -71,7 +71,7 @@ class MainHomeActivity : AppCompatActivity() {
                 }
 
                 R.id.menu_mypage -> {
-                    inquiryUserInfo(id)
+                    inquiryUserInfo(userId)
                     replaceFragment(MyPageFragment())
                     true
                 }
@@ -87,9 +87,9 @@ class MainHomeActivity : AppCompatActivity() {
             .commit()
     }
 
-    private fun inquiryUserInfo(id:Int)
+    private fun inquiryUserInfo(userId:Int)
     {
-        authService.inquiry(RequestInquiryDto(id))
+        authService.inquiry(RequestInquiryDto(userId))
             .enqueue(object :retrofit2.Callback<ResponseInquiryDto> {
                 override fun onResponse(
                     call: Call<ResponseInquiryDto>,
@@ -103,7 +103,7 @@ class MainHomeActivity : AppCompatActivity() {
                         //sharedpreference로 넘기기
                         MyApplication.prefs.setString("nick", userNickname)
                         MyApplication.prefs.setString("username", userUsername)
-                        MyApplication.prefs.setString("id", id.toString())
+                        MyApplication.prefs.setString("id", userId.toString())
                     }
                 }
 
