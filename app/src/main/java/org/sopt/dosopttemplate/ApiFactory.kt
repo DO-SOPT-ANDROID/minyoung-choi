@@ -37,5 +37,5 @@ object ApiFactory {
 }
 object ServicePool {
     val authService = ApiFactory.create<AuthService>()
-    val followerService=ApiFactory.createFollower<AuthService>()
+    val followerService=ApiFactory.createFollower<FollowerService>()
 }
