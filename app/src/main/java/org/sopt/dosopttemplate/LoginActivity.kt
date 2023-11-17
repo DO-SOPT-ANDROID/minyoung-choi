@@ -90,7 +90,7 @@ class LoginActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT,
                             ).show()
                             val intent = Intent(this@LoginActivity, MainHomeActivity::class.java)
-                            intent.putExtra("id", id)
+                            intent.putExtra("id", userId)
                             startActivity(intent)
                         }
                     }
