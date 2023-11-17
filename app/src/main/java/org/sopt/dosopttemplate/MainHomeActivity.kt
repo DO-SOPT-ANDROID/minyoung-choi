@@ -56,7 +56,7 @@ class MainHomeActivity : AppCompatActivity() {
 */
 
     private fun clickBottomNavigation() {
-        var userId= intent.getIntExtra("id")
+        var userId= intent.getIntExtra("id", -1)
 
         binding.bnvHome.setOnItemSelectedListener {
             when (it.itemId) {
