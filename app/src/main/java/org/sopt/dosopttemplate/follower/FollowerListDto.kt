@@ -1,6 +1,6 @@
 package org.sopt.dosopttemplate.follower
 
-data class followerListDto(
+data class FollowerListDto(
     val `data`: List<Data>,
     val page: Int,
     val per_page: Int,
