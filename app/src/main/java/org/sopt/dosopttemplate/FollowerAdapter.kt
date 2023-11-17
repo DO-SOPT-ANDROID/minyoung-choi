@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.sopt.dosopttemplate.databinding.ItemFollowerBinding
-import org.sopt.dosopttemplate.follower.FollowerDto
+import org.sopt.dosopttemplate.follower.Data
 
 class FollowerAdapter(context: Context) : RecyclerView.Adapter<FollowerViewHolder>() {
     private val inflater by lazy {
@@ -13,7 +13,7 @@ class FollowerAdapter(context: Context) : RecyclerView.Adapter<FollowerViewHolde
     }
 
     //로그인한 유저의 프로필 담을 곳 생성
-    private var FollowerInfo: List<FollowerDto> = emptyList()
+    private var FollowerInfo: List<Data> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowerViewHolder {
         val binding = ItemFollowerBinding.inflate(inflater, parent, false)
@@ -26,7 +26,7 @@ class FollowerAdapter(context: Context) : RecyclerView.Adapter<FollowerViewHolde
 
     override fun getItemCount(): Int = FollowerInfo.size
 
-    fun setFollowerList(followerDtoInfo: List<FollowerDto>) {
+    fun setFollowerList(followerDtoInfo: List<Data>) {
         this.FollowerInfo = followerDtoInfo.toList()
         notifyDataSetChanged()
     }

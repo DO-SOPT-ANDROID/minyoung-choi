@@ -60,7 +60,7 @@ class FollowerFragment : Fragment() {
                     //follower 리스트 생성
                     val data: FollowerDto = response.body()!!
                     val followerAdapter = FollowerAdapter(requireContext())
-          //          followerAdapter.setFollowerList(data.data)
+                    followerAdapter.setFollowerList(data.data)
 
                     binding.homeRvFollower.adapter = followerAdapter
                 }else{
