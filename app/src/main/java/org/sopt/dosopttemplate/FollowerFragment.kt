@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import org.sopt.dosopttemplate.ServicePool.followerService
 import org.sopt.dosopttemplate.databinding.FragmentFollowerBinding
@@ -38,10 +37,20 @@ class FollowerFragment : Fragment() {
         super.onDestroyView()
     }
 
+/*
     private fun getFollower() {
+*/
+/*
         followerService.request()
             .enqueue(object : Callback<FollowerListDto> {
-                override fun onResponse(
+*/
+
+/*
+
+        val call: Call<FollowerListDto> = followerService.request()
+
+        call.enqueue(object : Callback<FollowerListDto> {
+        override fun onResponse(
                     call: Call<FollowerListDto>,
                     response: Response<FollowerListDto>,
                 ) {
@@ -63,5 +72,29 @@ class FollowerFragment : Fragment() {
 
             })
 
+    }
+*/
+
+    private fun getFollower() {
+        followerService.request()
+            .enqueue(object : Callback<FollowerListDto> {
+            override fun onResponse(
+                call: Call<FollowerListDto>,
+                response: Response<FollowerListDto>,
+            ) {
+                if (response.isSuccessful) {
+                    //follower 리스트 생성
+                    val data: FollowerListDto = response.body()!!
+                    val followerAdapter = FollowerAdapter(requireContext())
+                    followerAdapter.setFollowerList(data.data)
+
+                    binding.homeRvFollower.adapter = followerAdapter
+                }
+            }
+
+            override fun onFailure(call: Call<FollowerListDto>, t: Throwable) {
+                // 실패 시 처리
+            }
+        })
     }
 }
