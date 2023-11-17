@@ -1,8 +1,11 @@
 package org.sopt.dosopttemplate.retrofit2data
 
 import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Serializable
 
-class ResponseInquiryDto(
+@Serializable
+
+data class ResponseInquiryDto(
     @SerializedName("username")
     val username: String,
 
