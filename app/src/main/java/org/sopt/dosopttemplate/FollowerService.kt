@@ -1,15 +1,12 @@
 package org.sopt.dosopttemplate
 
 
-import org.sopt.dosopttemplate.follower.FollowerListDto
+import org.sopt.dosopttemplate.follower.FollowerDto
 import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Query
 
 interface FollowerService {
-    @GET("api/user?page=2")
-    fun request(): Response<FollowerListDto>
+    @GET("api/users?page=2")
+    fun request(): Call<FollowerDto>
 
 }
