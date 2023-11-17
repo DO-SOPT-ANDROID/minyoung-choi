@@ -13,7 +13,16 @@ object ApiFactory {
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
             .build()
     }
+
+    val reqresFollower: Retrofit by lazy{
+        Retrofit.Builder()
+            .baseUrl("https://reqres.in/")
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+            .build()
+    }
     inline fun <reified T> create(): T = retrofit.create<T>(T::class.java)
+    inline fun <reified T> createFollower(): T = reqresFollower.create<T>(T::class.java)
+
 }
 object ServicePool {
     val authService = ApiFactory.create<AuthService>()
