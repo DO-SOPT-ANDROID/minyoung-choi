@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val receivedUserInfoList = intent.getStringArrayListExtra("userInfoList")!!
+    //    val receivedUserInfoList = intent.getStringArrayListExtra("userInfoList")!!
 
         login()
 /*
