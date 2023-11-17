@@ -1,6 +1,6 @@
 package org.sopt.dosopttemplate.follower
 
-data class Data(
+data class Follower(
     val avatar: String,
     val email: String,
     val first_name: String,
