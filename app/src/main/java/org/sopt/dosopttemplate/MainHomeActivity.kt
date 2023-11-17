@@ -75,6 +75,10 @@ class MainHomeActivity : AppCompatActivity() {
                     replaceFragment(MyPageFragment())
                     true
                 }
+                R.id.menu_follower -> {
+                    replaceFragment(FollowerFragment())
+                    true
+                }
 
                 else -> false
             }
