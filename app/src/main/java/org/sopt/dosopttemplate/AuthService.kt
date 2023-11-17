@@ -11,14 +11,19 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface AuthService {
+
     @POST("api/v1/members/sign-in")
     fun login(
         @Body request: RequestLoginDto,
     ): Call<ResponseLoginDto>
 
+    @POST("api/v1/members")
+
     fun signUp(
         @Body request: RequestSignUpDto,
     ): Call<ResponseSignUpDto>
+
+    @POST("api/v1/members/{memberId}")
 
     fun inquiry(
         @Body request: RequestInquiryDto,
