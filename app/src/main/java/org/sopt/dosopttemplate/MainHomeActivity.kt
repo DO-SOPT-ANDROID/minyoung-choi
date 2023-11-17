@@ -29,7 +29,7 @@ class MainHomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //intent로 StringArrayList 형태로 받기
-        var receivedUserInfoList = intent.getStringArrayListExtra("userInfoList")!!
+//        var receivedUserInfoList = intent.getStringArrayListExtra("userInfoList")!!
         //setUserInfoPrefs(receivedUserInfoList)
 
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_home)
