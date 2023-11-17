@@ -30,36 +30,38 @@ class LoginActivity : AppCompatActivity() {
     //    val receivedUserInfoList = intent.getStringArrayListExtra("userInfoList")!!
 
         login()
-/*
-//1주차 도전과제 수행시 사용을 위해
-        //로그인 버튼 클릭
-        //로컬 로그인
-        binding.btLogin.setOnClickListener {
+        //    val receivedUserInfoList = intent.getStringArrayListExtra("userInfoList")!!
 
-            val input_id = binding.etLoginId.text.toString()
-            val input_pw = binding.etLoginPw.text.toString()
+        /*
+        //1주차 도전과제 수행시 사용을 위해
+                //로그인 버튼 클릭
+                //로컬 로그인
+                binding.btLogin.setOnClickListener {
 
-            //id pw 일치여부 확인
-            if (receivedUserInfoList[0].toString() == input_id && receivedUserInfoList[1].toString() == input_pw) {
-                //토스트 띄우기
-                Toast.makeText(this, "로그인을 성공했습니다.", Toast.LENGTH_SHORT).show()
+                    val input_id = binding.etLoginId.text.toString()
+                    val input_pw = binding.etLoginPw.text.toString()
 
-                //id, pw 정보 넘기기
-                val intent = Intent(this, MainHomeActivity::class.java)
-                intent.putExtra("userInfoList", receivedUserInfoList)
+                    //id pw 일치여부 확인
+                    if (receivedUserInfoList[0].toString() == input_id && receivedUserInfoList[1].toString() == input_pw) {
+                        //토스트 띄우기
+                        Toast.makeText(this, "로그인을 성공했습니다.", Toast.LENGTH_SHORT).show()
 
-                //메인홈페이지로 이동
-                startActivity(intent)
+                        //id, pw 정보 넘기기
+                        val intent = Intent(this, MainHomeActivity::class.java)
+                        intent.putExtra("userInfoList", receivedUserInfoList)
 
-            }
-            //로그인 실패
-            else {
-                Snackbar.make(
-                    binding.root, "로그인을 실패했습니다.", Snackbar.LENGTH_SHORT
-                ).show()
-            }
-        }
-*/
+                        //메인홈페이지로 이동
+                        startActivity(intent)
+
+                    }
+                    //로그인 실패
+                    else {
+                        Snackbar.make(
+                            binding.root, "로그인을 실패했습니다.", Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+        */
         //가입 버튼 클릭
         binding.btSign.setOnClickListener {
 
@@ -74,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
     private fun login() {
         val id = binding.etLoginId.text.toString()
         val password = binding.etLoginPw.text.toString()
-        binding.btLogin.setOnClickListener{
+        binding.btLogin.setOnClickListener {
             authService.login(RequestLoginDto(id, password))
                 .enqueue(object : retrofit2.Callback<ResponseLoginDto> {
                     override fun onResponse(
@@ -83,11 +85,19 @@ class LoginActivity : AppCompatActivity() {
                     ) {
                         if (response.isSuccessful) {
                             val data: ResponseLoginDto = response.body()!!
-                            val userId:Int = data.id
+                            val userId: Int = data.id
                             Toast.makeText(
                                 this@LoginActivity,
                                 "로그인 성공, 유저의 ID는 $userId 입니다",
                                 Toast.LENGTH_SHORT,
+                            ).show()
+                            val intent = Intent(this@LoginActivity, MainHomeActivity::class.java)
+                            intent.putExtra("id", userId)
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "아이디와 패스워드가 일치 하지 않습니다.", Toast.LENGTH_SHORT
                             ).show()
                             val intent = Intent(this@LoginActivity, MainHomeActivity::class.java)
                             intent.putExtra("id", userId)
@@ -100,8 +110,6 @@ class LoginActivity : AppCompatActivity() {
                 })
         }
     }
-
-
 }
 
 
