@@ -47,7 +47,7 @@ class FollowerFragment : Fragment() {
         val call: Call<FollowerListDto> = followerService.request()
         call.enqueue(object : Callback<FollowerListDto> {
 */
-        followerService.request()
+        followerService.request(2)
             .enqueue(object : Callback<FollowerDto> {
             override fun onResponse(
                 call: Call<FollowerDto>,
