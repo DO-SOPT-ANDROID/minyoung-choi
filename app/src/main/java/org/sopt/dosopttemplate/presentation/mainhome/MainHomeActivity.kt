@@ -1,23 +1,21 @@
-package org.sopt.dosopttemplate
+package org.sopt.dosopttemplate.presentation.mainhome
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import com.google.android.material.snackbar.Snackbar
-import org.sopt.dosopttemplate.ServicePool.authService
+import org.sopt.dosopttemplate.MyApplication
+import org.sopt.dosopttemplate.R
+import org.sopt.dosopttemplate.module.ServicePool.authService
 import org.sopt.dosopttemplate.databinding.ActivityMainhomeBinding
-import org.sopt.dosopttemplate.retrofit2data.RequestInquiryDto
-import org.sopt.dosopttemplate.retrofit2data.ResponseInquiryDto
-import org.sopt.dosopttemplate.retrofit2data.ResponseLoginDto
+import org.sopt.dosopttemplate.data.dto.follower.retrofit2data.RequestInquiryDto
+import org.sopt.dosopttemplate.data.dto.follower.retrofit2data.ResponseInquiryDto
+import org.sopt.dosopttemplate.presentation.doandroid.DoAndroidFragment
+import org.sopt.dosopttemplate.presentation.follower.FollowerFragment
+import org.sopt.dosopttemplate.presentation.home.HomeFragment
+import org.sopt.dosopttemplate.presentation.mypage.MyPageFragment
 import retrofit2.Call
 import retrofit2.Response
-import java.util.ArrayList
 
 
 class MainHomeActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate
+package org.sopt.dosopttemplate.presentation.follower
 
 import android.os.Bundle
 import android.util.Log
@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import org.sopt.dosopttemplate.ServicePool.followerService
+import org.sopt.dosopttemplate.FollowerAdapter
+import org.sopt.dosopttemplate.module.ServicePool.followerService
 import org.sopt.dosopttemplate.databinding.FragmentFollowerBinding
-import org.sopt.dosopttemplate.follower.FollowerDto
+import org.sopt.dosopttemplate.data.dto.follower.FollowerDto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,7 +17,7 @@ import retrofit2.Response
 
 class FollowerFragment : Fragment() {
     private var _binding: FragmentFollowerBinding? = null
-    private val binding: FragmentFollowerBinding get() = _binding!!
+    private val binding: FragmentFollowerBinding get() = requireNotNull(_binding){"아직 바인딩 객체 생성되지 않음"}
 
     override fun onCreateView(
         inflater: LayoutInflater,

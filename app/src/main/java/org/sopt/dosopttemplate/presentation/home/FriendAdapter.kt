@@ -1,9 +1,11 @@
-package org.sopt.dosopttemplate
+package org.sopt.dosopttemplate.presentation.home
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import org.sopt.dosopttemplate.Friend
+import org.sopt.dosopttemplate.FriendViewHolder
 import org.sopt.dosopttemplate.databinding.ItemFriendBinding
 
 class FriendAdapter(context: Context) : RecyclerView.Adapter<FriendViewHolder>() {

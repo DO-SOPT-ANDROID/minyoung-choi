@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate
+package org.sopt.dosopttemplate.presentation.mypage
 
 import android.content.Context
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import org.sopt.dosopttemplate.MyApplication
 import org.sopt.dosopttemplate.databinding.FragmentMypageBinding
 
 class MyPageFragment : Fragment() {

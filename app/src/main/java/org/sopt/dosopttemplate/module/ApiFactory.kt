@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate
+package org.sopt.dosopttemplate.module
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
@@ -6,6 +6,8 @@ import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.sopt.dosopttemplate.BuildConfig
+import org.sopt.dosopttemplate.FollowerService
 import retrofit2.Retrofit
 
 object ApiFactory {
@@ -37,5 +39,5 @@ object ApiFactory {
 }
 object ServicePool {
     val authService = ApiFactory.create<AuthService>()
-    val followerService=ApiFactory.createFollower<FollowerService>()
+    val followerService= ApiFactory.createFollower<FollowerService>()
 }
