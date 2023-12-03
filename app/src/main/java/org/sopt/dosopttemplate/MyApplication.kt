@@ -7,11 +7,13 @@ class MyApplication : Application()
     companion object
     {
         lateinit var prefs: PreferenceUtil
+            private set
     }
 
     override fun onCreate()
     {
-        prefs = PreferenceUtil(applicationContext)
         super.onCreate()
+        prefs = PreferenceUtil(applicationContext)
+
     }
 }

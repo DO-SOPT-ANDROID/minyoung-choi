@@ -17,6 +17,13 @@
         android:title="HOME"
         />
 
+    <!--FOLLWER-->
+    <item
+        android:id="@+id/menu_follower"
+        android:icon="@drawable/ic_follow"
+        android:title="FOLLWER"
+        />
+
     <!--my page-->
     <item
         android:id="@+id/menu_mypage"

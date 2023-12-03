@@ -28,7 +28,7 @@
         android:paddingHorizontal="30dp">
 
         <ImageView
-            android:id="@+id/iv_image"
+            android:id="@+id/mypage_iv_my_image"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
@@ -39,7 +39,7 @@
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/tv_main_nick"
+            android:id="@+id/mypage_tv_my_nick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -47,7 +47,7 @@
             android:paddingTop="15dp"
             android:text="닉네임"
             android:textSize="20dp"
-            app:layout_constraintStart_toEndOf="@id/iv_image"
+            app:layout_constraintStart_toEndOf="@id/mypage_iv_my_image"
             tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -65,18 +65,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_main_ID"
+        android:id="@+id/mypage_tv_my_ID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
         android:text="아이디"
         android:textSize="20dp" />
 
+    <!--기존은 mbti를 보여주는 항목이었으나 회원의 id를 보여주는 항목으로 수정
+        이후 mbti data 사용 여부 확인 후 id 수정 등 진행할 계획,
+        현재는 id 변경 작업 보류-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingVertical="15dp"
-        android:text="mbti"
+        android:text="회원일렬번호"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +88,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_main_mbti"
+        android:id="@+id/mypage_tv_my_mbti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"

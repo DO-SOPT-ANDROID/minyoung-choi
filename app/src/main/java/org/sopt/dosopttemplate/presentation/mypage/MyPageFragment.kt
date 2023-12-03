@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate
+package org.sopt.dosopttemplate.presentation.mypage
 
 import android.content.Context
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import org.sopt.dosopttemplate.MyApplication
 import org.sopt.dosopttemplate.databinding.FragmentMypageBinding
 
 class MyPageFragment : Fragment() {
@@ -31,9 +32,9 @@ class MyPageFragment : Fragment() {
 
     private fun getUserInfo() {
         //sharedPreferenced 로 유저 정보 받기
-        binding.tvMainID.text = MyApplication.prefs.getString("id", "")
-        binding.tvMainMbti.text = MyApplication.prefs.getString("mbti", "")
-        binding.tvMainNick.text = MyApplication.prefs.getString("nick", "")
+        binding.mypageTvMyNick.text = MyApplication.prefs.getString("nick", "")
+        binding.mypageTvMyMbti.text = MyApplication.prefs.getString("username", "")
+        binding.mypageTvMyID.text = MyApplication.prefs.getString("id", "")
     }
 
     override fun onDestroyView() {

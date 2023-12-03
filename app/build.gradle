@@ -1,7 +1,12 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.20'
 }
+
+// local.property에 접근
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
     namespace 'org.sopt.dosopttemplate'
@@ -15,6 +20,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //사용할 객체 가져오기 (base_url 감추는 작업)
+        buildConfigField "String", "AUTH_BASE_URL", properties["auth.base.url"]
     }
 
     buildTypes {
@@ -32,6 +40,9 @@ android {
     }
     buildFeatures {
         viewBinding = true
+
+        //사용할 객체 가져오기 (base_url 감추는 작업)
+        buildConfig true
     }
 }
 
@@ -56,4 +67,19 @@ dependencies {
 
     //concatAdapter 위한 의존성 설정
     implementation "androidx.recyclerview:recyclerview:1.2.1"
+
+    //Retrofit2 라이브러리 추가 과정 2번
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.8.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0'
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
+
+    //이미지 로드
+    implementation 'io.coil-kt:coil:2.4.0'
+
+
 }
