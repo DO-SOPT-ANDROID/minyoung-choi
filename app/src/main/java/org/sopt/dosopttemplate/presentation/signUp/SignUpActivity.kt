@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.module.ServicePool.authService
 import org.sopt.dosopttemplate.databinding.ActivitySignupBinding
@@ -22,10 +23,11 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
     //0일 때 가입 불가
     //1일 때 가입 가능
-    private var signUpAvailable=0
+    private var signUpIdAvailable = 0
+    private var signUpPwAvailable = 0
 
 
-    @SuppressLint("SuspiciousIndentation")
+    @SuppressLint("SuspiciousIndentation", "ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupBinding.inflate(layoutInflater)
@@ -34,16 +36,19 @@ class SignUpActivity : AppCompatActivity() {
             setContentView(binding.root)
 
             //텍스트 감시
-            setUpTextWatchers()
+            setTextWatchers()
+            SignUpAviliable()
 
             //가입하기 버튼 눌렸을 때
             btSignupButton.setOnClickListener {
-
                 //가입 조건 확인
-                if (checkCondition()) {
-                    //토스트 띄우기
-                    val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+
+                if (checkCondition() && signUpIdAvailable == 1 && signUpPwAvailable == 1) {
                     signUp()
+
+
+                    //토스트 띄우기
+                     val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
 
                     Toast.makeText(this@SignUpActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
                     /*
@@ -56,21 +61,32 @@ class SignUpActivity : AppCompatActivity() {
                     startActivity(intent)
 
                 } else {
-/*
-                    Snackbar.make(
-                        this,
+                    Toast.makeText(
+                        this@SignUpActivity,
                         "모든 정보를 입력해야합니다.",
-                        Snackbar.LENGTH_SHORT
+                        Toast.LENGTH_SHORT
                     ).show()
-*/
                 }
 
             }
         }
     }
 
+    @SuppressLint("ResourceAsColor")
+    private fun SignUpAviliable() {
+        if (signUpIdAvailable == 1 && signUpPwAvailable == 1) {
+            Toast.makeText(this@SignUpActivity, "가능", Toast.LENGTH_SHORT).show()
 
-    private fun setUpTextWatchers() {
+            //색 안변함 이슈///////////////////////
+            binding.btSignupButton.setBackgroundColor(ContextCompat.getColor(this, R.color.point))
+            /////////////////////////////////
+            Toast.makeText(this@SignUpActivity, "가능", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    @SuppressLint("ResourceAsColor")
+    private fun setTextWatchers() {
         with(binding) {
 
             //id 조건 확인
@@ -80,8 +96,10 @@ class SignUpActivity : AppCompatActivity() {
                     if ((s == null) || (s.length !in (lengthIdMin..lengthIdMax))) {
                         //아무것도 입력x 거나 길이가 안맞을 때
                         etSignupPw.error = getString(R.string.signUpIdErrorMsg)
+                        signUpIdAvailable = 0
                     } else {
                         etSignupPw.error = null
+                        signUpIdAvailable = 1
                     }
                 }
 
@@ -99,9 +117,11 @@ class SignUpActivity : AppCompatActivity() {
                     //여기에 입력 후 내용물 감시
                     if ((s != null) && ((s.length !in (lengthIdMin..lengthIdMax))/* || 영문숫자조건 안맞을때*/)) {
                         //아무것도 입력x 거나 길이가 안맞을 때
-                        etSignupPw.error = getString(R.string.signUpIdErrorMsg)
+                        etSignupId.error = getString(R.string.signUpIdErrorMsg)
+                        signUpIdAvailable = 0
                     } else {
-                        etSignupPw.error = null
+                        etSignupId.error = null
+                        signUpIdAvailable = 1
                     }
 
                 }
@@ -111,8 +131,10 @@ class SignUpActivity : AppCompatActivity() {
                 override fun afterTextChanged(s: Editable?) {
                     if ((s == null) || (s.length !in (lengthPwMin..lengthPwMax))) {
                         etSignupPw.error = getString(R.string.signUpPwErrorMsg)
+                        signUpPwAvailable = 0
                     } else {
                         etSignupPw.error = null
+                        signUpPwAvailable = 1
                     }
                 }
 
@@ -129,18 +151,30 @@ class SignUpActivity : AppCompatActivity() {
                     if ((s != null) && ((s.length !in (lengthPwMin..lengthPwMax))/* || 영문숫자조건 안맞을때*/)) {
                         //아무것도 입력x 거나 길이가 안맞을 때
                         etSignupPw.error = getString(R.string.signUpIdErrorMsg)
+                        signUpPwAvailable = 0
                     } else {
                         etSignupPw.error = null
+                        signUpPwAvailable = 1
                     }
 
                 }
             })
 
+            if (signUpPwAvailable == 1 && signUpIdAvailable == 1) {
+                btSignupButton.setBackgroundColor(
+                    ContextCompat.getColor(
+                        applicationContext,
+                        R.color.point
+                    )
+                )
+                Toast.makeText(this@SignUpActivity, "가능", Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 
     private fun checkCondition() =
-        (binding.etSignupId.text.length < 11 && binding.etSignupId.text.length > 5) && (binding.etSignupPw.text.length < 13 && binding.etSignupPw.text.length > 7) && (binding.etSignupNickname.text.length > 0 && !binding.etSignupNickname.text.isBlank())
+        (!binding.etSignupNickname.text.isBlank() && !binding.etSignupNickname.text.isBlank())
 
     /*
         private fun sendUserInfo(
