@@ -8,11 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import android.widget.Toast
 import org.sopt.dosopttemplate.module.ServicePool.authService
-//import com.codingmy.sopt_w1_hw1.databinding.ActivitySignupBinding
 import org.sopt.dosopttemplate.databinding.ActivitySignupBinding
 import org.sopt.dosopttemplate.presentation.login.LoginActivity
 import org.sopt.dosopttemplate.data.dto.request.RequestSignUpDto
-import org.sopt.dosopttemplate.data.dto.follower.retrofit2data.ResponseSignUpDto
+import org.sopt.dosopttemplate.data.dto.response.ResponseSignUpDto
 import retrofit2.Call
 import retrofit2.Response
 
