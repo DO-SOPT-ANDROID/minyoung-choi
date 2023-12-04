@@ -17,6 +17,7 @@ import org.sopt.dosopttemplate.data.dto.request.RequestSignUpDto
 import org.sopt.dosopttemplate.data.dto.response.ResponseSignUpDto
 import retrofit2.Call
 import retrofit2.Response
+import java.util.regex.Pattern
 
 
 class SignUpActivity : AppCompatActivity() {
@@ -91,15 +92,28 @@ class SignUpActivity : AppCompatActivity() {
 
             //id 조건 확인
             etSignupId.addTextChangedListener(object : TextWatcher {
+                val idPattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9]).{6,10}$")
+
                 override fun afterTextChanged(s: Editable?) {
+
+             //       var idPattern="^(?=.[A-Za-z])(?=.[0-9])[A-Za-z[0-9]]{6,10}$"
+/*
+                    if((s != null) && (s.length in (lengthIdMin..lengthIdMax) )
+*/
+
                     //길이 확인
+/*
                     if ((s == null) || (s.length !in (lengthIdMin..lengthIdMax))) {
-                        //아무것도 입력x 거나 길이가 안맞을 때
-                        etSignupPw.error = getString(R.string.signUpIdErrorMsg)
-                        signUpIdAvailable = 0
-                    } else {
+*/
+                    if(idPattern.matcher(s).matches()){
+                        //조건맞을때
                         etSignupPw.error = null
                         signUpIdAvailable = 1
+
+                    } else {
+                        etSignupPw.error = getString(R.string.signUpIdErrorMsg)
+                        signUpIdAvailable = 0
+
                     }
                 }
 
@@ -115,13 +129,20 @@ class SignUpActivity : AppCompatActivity() {
                 //입력값 있고나서
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     //여기에 입력 후 내용물 감시
-                    if ((s != null) && ((s.length !in (lengthIdMin..lengthIdMax))/* || 영문숫자조건 안맞을때*/)) {
-                        //아무것도 입력x 거나 길이가 안맞을 때
-                        etSignupId.error = getString(R.string.signUpIdErrorMsg)
-                        signUpIdAvailable = 0
-                    } else {
+/*
+                    if ((s != null) && ((s.length !in (lengthIdMin..lengthIdMax))*/
+/* || 영문숫자조건 안맞을때*//*
+)) {
+*/
+                    if(idPattern.matcher(s).matches()){
+                        //조건 맞을때
                         etSignupId.error = null
                         signUpIdAvailable = 1
+
+                    } else {
+                        etSignupId.error = getString(R.string.signUpIdErrorMsg)
+                        signUpIdAvailable = 0
+
                     }
 
                 }
