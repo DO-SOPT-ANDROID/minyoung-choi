@@ -13,8 +13,8 @@ import org.sopt.dosopttemplate.presentation.mainhome.MainHomeActivity
 import org.sopt.dosopttemplate.module.ServicePool.authService
 import org.sopt.dosopttemplate.presentation.SignUpActivity
 import org.sopt.dosopttemplate.databinding.ActivityLoginBinding
-import org.sopt.dosopttemplate.data.dto.follower.retrofit2data.RequestLoginDto
-import org.sopt.dosopttemplate.data.dto.follower.retrofit2data.ResponseLoginDto
+import org.sopt.dosopttemplate.data.dto.request.RequestLoginDto
+import org.sopt.dosopttemplate.data.dto.response.ResponseLoginDto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

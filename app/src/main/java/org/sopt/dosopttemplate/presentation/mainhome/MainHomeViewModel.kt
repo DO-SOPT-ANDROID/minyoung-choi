@@ -1,7 +1,7 @@
 package org.sopt.dosopttemplate.presentation.mainhome
 
 import androidx.lifecycle.ViewModel
-import org.sopt.dosopttemplate.Friend
+import org.sopt.dosopttemplate.data.dataclass.Friend
 import org.sopt.dosopttemplate.R
 
 class MainHomeViewModel : ViewModel() {

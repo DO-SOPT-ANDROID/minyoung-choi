@@ -8,8 +8,8 @@ import org.sopt.dosopttemplate.MyApplication
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.module.ServicePool.authService
 import org.sopt.dosopttemplate.databinding.ActivityMainhomeBinding
-import org.sopt.dosopttemplate.data.dto.follower.retrofit2data.RequestInquiryDto
-import org.sopt.dosopttemplate.data.dto.follower.retrofit2data.ResponseInquiryDto
+import org.sopt.dosopttemplate.data.dto.request.RequestInquiryDto
+import org.sopt.dosopttemplate.data.dto.response.ResponseInquiryDto
 import org.sopt.dosopttemplate.presentation.doandroid.DoAndroidFragment
 import org.sopt.dosopttemplate.presentation.follower.FollowerFragment
 import org.sopt.dosopttemplate.presentation.home.HomeFragment

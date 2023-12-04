@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate.data.dto.follower.retrofit2data
+package org.sopt.dosopttemplate.data.dto.request
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable

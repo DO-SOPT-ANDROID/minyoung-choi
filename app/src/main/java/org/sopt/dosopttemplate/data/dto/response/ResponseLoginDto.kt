@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate.data.dto.follower.retrofit2data
+package org.sopt.dosopttemplate.data.dto.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
