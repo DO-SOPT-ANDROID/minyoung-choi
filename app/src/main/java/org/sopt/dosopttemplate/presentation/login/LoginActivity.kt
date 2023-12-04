@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.sopt.dosopttemplate.presentation.mainhome.MainHomeActivity
 import org.sopt.dosopttemplate.module.ServicePool.authService
-import org.sopt.dosopttemplate.presentation.SignUpActivity
+import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
 import org.sopt.dosopttemplate.databinding.ActivityLoginBinding
 import org.sopt.dosopttemplate.data.dto.request.RequestLoginDto
 import org.sopt.dosopttemplate.data.dto.response.ResponseLoginDto

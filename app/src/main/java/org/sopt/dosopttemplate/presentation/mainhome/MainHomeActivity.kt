@@ -8,8 +8,8 @@ import org.sopt.dosopttemplate.MyApplication
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.module.ServicePool.authService
 import org.sopt.dosopttemplate.databinding.ActivityMainhomeBinding
-import org.sopt.dosopttemplate.data.dto.request.RequestInquiryDto
-import org.sopt.dosopttemplate.data.dto.response.ResponseInquiryDto
+import org.sopt.dosopttemplate.data.dto.request.RequestUserDataDto
+import org.sopt.dosopttemplate.data.dto.response.ResponseUserDataDto
 import org.sopt.dosopttemplate.presentation.doandroid.DoAndroidFragment
 import org.sopt.dosopttemplate.presentation.follower.FollowerFragment
 import org.sopt.dosopttemplate.presentation.home.HomeFragment
@@ -91,14 +91,14 @@ class MainHomeActivity : AppCompatActivity() {
 
     private fun inquiryUserInfo(userId:Int)
     {
-        authService.inquiry(RequestInquiryDto(userId))
-            .enqueue(object :retrofit2.Callback<ResponseInquiryDto> {
+        authService.inquiry(RequestUserDataDto(userId))
+            .enqueue(object :retrofit2.Callback<ResponseUserDataDto> {
                 override fun onResponse(
-                    call: Call<ResponseInquiryDto>,
-                    response: Response<ResponseInquiryDto>,
+                    call: Call<ResponseUserDataDto>,
+                    response: Response<ResponseUserDataDto>,
                 ) {
                     if (response.isSuccessful) {
-                        val data: ResponseInquiryDto = response.body()!!
+                        val data: ResponseUserDataDto = response.body()!!
                         val userNickname = data.nickname
                         val userUsername = data.username
 
@@ -109,7 +109,7 @@ class MainHomeActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<ResponseInquiryDto>, t: Throwable) {
+                override fun onFailure(call: Call<ResponseUserDataDto>, t: Throwable) {
                     Toast.makeText(this@MainHomeActivity, "서버 에러 발생", Toast.LENGTH_SHORT).show()
                 }
             }

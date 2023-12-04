@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 
-data class ResponseInquiryDto(
+data class ResponseUserDataDto(
     @SerializedName("username")
     val username: String,
 
