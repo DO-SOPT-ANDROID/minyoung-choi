@@ -52,12 +52,12 @@ class SignUpActivity : AppCompatActivity() {
                      val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
 
                     Toast.makeText(this@SignUpActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
-                    /*
-                                //유저정보 -> 리스트로 구성
-                                val userInfoList = UserInfoToListString()
-
-                                sendUserInfo(intent, userInfoList)
-                */
+//                    /*
+//                                //유저정보 -> 리스트로 구성
+//                                val userInfoList = UserInfoToListString()
+//
+//                                sendUserInfo(intent, userInfoList)
+//                */
                     //액티비티 이동
                     startActivity(intent)
 
@@ -96,15 +96,15 @@ class SignUpActivity : AppCompatActivity() {
 
                 override fun afterTextChanged(s: Editable?) {
 
-             //       var idPattern="^(?=.[A-Za-z])(?=.[0-9])[A-Za-z[0-9]]{6,10}$"
-/*
-                    if((s != null) && (s.length in (lengthIdMin..lengthIdMax) )
-*/
-
-                    //길이 확인
-/*
-                    if ((s == null) || (s.length !in (lengthIdMin..lengthIdMax))) {
-*/
+//             //       var idPattern="^(?=.[A-Za-z])(?=.[0-9])[A-Za-z[0-9]]{6,10}$"
+///*
+//                    if((s != null) && (s.length in (lengthIdMin..lengthIdMax) )
+//*/
+//
+//                    //길이 확인
+///*
+//                    if ((s == null) || (s.length !in (lengthIdMin..lengthIdMax))) {
+//*/
                     if(idPattern.matcher(s).matches()){
                         //조건맞을때
                         etSignupPw.error = null
@@ -129,11 +129,11 @@ class SignUpActivity : AppCompatActivity() {
                 //입력값 있고나서
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     //여기에 입력 후 내용물 감시
-/*
-                    if ((s != null) && ((s.length !in (lengthIdMin..lengthIdMax))*/
-/* || 영문숫자조건 안맞을때*//*
-)) {
-*/
+///*
+//                    if ((s != null) && ((s.length !in (lengthIdMin..lengthIdMax))*/
+///* || 영문숫자조건 안맞을때*//*
+//)) {
+//*/
                     if(idPattern.matcher(s).matches()){
                         //조건 맞을때
                         etSignupId.error = null
@@ -149,8 +149,10 @@ class SignUpActivity : AppCompatActivity() {
             })
 
             etSignupPw.addTextChangedListener(object : TextWatcher {
+                val pwPattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{6,12}$")
                 override fun afterTextChanged(s: Editable?) {
-                    if ((s == null) || (s.length !in (lengthPwMin..lengthPwMax))) {
+//                    if ((s == null) || (s.length !in (lengthPwMin..lengthPwMax))) {
+                    if(!pwPattern.matcher(s).matches()){
                         etSignupPw.error = getString(R.string.signUpPwErrorMsg)
                         signUpPwAvailable = 0
                     } else {
@@ -169,8 +171,8 @@ class SignUpActivity : AppCompatActivity() {
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     //여기에 입력 후 내용물 감시
-                    if ((s != null) && ((s.length !in (lengthPwMin..lengthPwMax))/* || 영문숫자조건 안맞을때*/)) {
-                        //아무것도 입력x 거나 길이가 안맞을 때
+                    if(!pwPattern.matcher(s).matches()){
+                        //조건안맞
                         etSignupPw.error = getString(R.string.signUpIdErrorMsg)
                         signUpPwAvailable = 0
                     } else {
@@ -197,28 +199,28 @@ class SignUpActivity : AppCompatActivity() {
     private fun checkCondition() =
         (!binding.etSignupNickname.text.isBlank() && !binding.etSignupNickname.text.isBlank())
 
-    /*
-        private fun sendUserInfo(
-            intent: Intent,
-            userInfoList: List<String>
-        ) {
-            //id pw 넘기기
-            intent.putStringArrayListExtra("userInfoList", ArrayList(userInfoList))
-            setResult(RESULT_OK, intent)
-        }
-    */
 
-    /*
-        private fun UserInfoToListString(): List<String> {
-            val userInfoList = listOf<String>(
-                binding.etSignupId.text.toString(),
-                binding.etSignupPw.text.toString(),
-                binding.etSignupNickname.text.toString(),
-                binding.etSignupMbti.text.toString()
-            )
-            return userInfoList
-        }
-    */
+//        private fun sendUserInfo(
+//            intent: Intent,
+//            userInfoList: List<String>
+//        ) {
+//            //id pw 넘기기
+//            intent.putStringArrayListExtra("userInfoList", ArrayList(userInfoList))
+//            setResult(RESULT_OK, intent)
+//        }
+//    */
+//
+//    /*
+//        private fun UserInfoToListString(): List<String> {
+//            val userInfoList = listOf<String>(
+//                binding.etSignupId.text.toString(),
+//                binding.etSignupPw.text.toString(),
+//                binding.etSignupNickname.text.toString(),
+//                binding.etSignupMbti.text.toString()
+//            )
+//            return userInfoList
+//        }
+
 
     private fun signUp() = with(binding) {
         val id = etSignupId.text.toString();
