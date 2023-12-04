@@ -49,7 +49,7 @@ class SignUpActivity : AppCompatActivity() {
 
 
                     //토스트 띄우기
-                     val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+                    val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
 
                     Toast.makeText(this@SignUpActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
 //                    /*
@@ -105,14 +105,17 @@ class SignUpActivity : AppCompatActivity() {
 ///*
 //                    if ((s == null) || (s.length !in (lengthIdMin..lengthIdMax))) {
 //*/
-                    if(idPattern.matcher(s).matches()){
+                    if (idPattern.matcher(s).matches()) {
                         //조건맞을때
                         etSignupPw.error = null
                         signUpIdAvailable = 1
+                        etSignupId.setBackgroundResource(R.drawable.shape_white_line_8_rect)
+
 
                     } else {
                         etSignupPw.error = getString(R.string.signUpIdErrorMsg)
                         signUpIdAvailable = 0
+                        etSignupId.setBackgroundResource(R.drawable.shape_red_line_8_rect)
 
                     }
                 }
@@ -134,14 +137,18 @@ class SignUpActivity : AppCompatActivity() {
 ///* || 영문숫자조건 안맞을때*//*
 //)) {
 //*/
-                    if(idPattern.matcher(s).matches()){
+                    if (idPattern.matcher(s).matches()) {
                         //조건 맞을때
                         etSignupId.error = null
                         signUpIdAvailable = 1
+                        etSignupId.setBackgroundResource(R.drawable.shape_white_line_8_rect)
+
 
                     } else {
                         etSignupId.error = getString(R.string.signUpIdErrorMsg)
                         signUpIdAvailable = 0
+                        etSignupId.setBackgroundResource(R.drawable.shape_red_line_8_rect)
+                        btSignupButton.setBackgroundResource(R.drawable.shape_gray_fill_rect)
 
                     }
 
@@ -149,15 +156,22 @@ class SignUpActivity : AppCompatActivity() {
             })
 
             etSignupPw.addTextChangedListener(object : TextWatcher {
-                val pwPattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{6,12}$")
+                val pwPattern =
+                    Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{6,12}$")
+
                 override fun afterTextChanged(s: Editable?) {
 //                    if ((s == null) || (s.length !in (lengthPwMin..lengthPwMax))) {
-                    if(!pwPattern.matcher(s).matches()){
+                    if (!pwPattern.matcher(s).matches()) {
                         etSignupPw.error = getString(R.string.signUpPwErrorMsg)
                         signUpPwAvailable = 0
+                        etSignupPw.setBackgroundResource(R.drawable.shape_red_line_8_rect)
+                        btSignupButton.setBackgroundResource(R.drawable.shape_gray_fill_rect)
+
                     } else {
                         etSignupPw.error = null
                         signUpPwAvailable = 1
+                        etSignupPw.setBackgroundResource(R.drawable.shape_white_line_8_rect)
+
                     }
                 }
 
@@ -171,13 +185,18 @@ class SignUpActivity : AppCompatActivity() {
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     //여기에 입력 후 내용물 감시
-                    if(!pwPattern.matcher(s).matches()){
+                    if (!pwPattern.matcher(s).matches()) {
                         //조건안맞
                         etSignupPw.error = getString(R.string.signUpIdErrorMsg)
                         signUpPwAvailable = 0
+                        etSignupPw.setBackgroundResource(R.drawable.shape_red_line_8_rect)
+                        btSignupButton.setBackgroundResource(R.drawable.shape_gray_fill_rect)
+
                     } else {
                         etSignupPw.error = null
                         signUpPwAvailable = 1
+                        etSignupPw.setBackgroundResource(R.drawable.shape_white_line_8_rect)
+
                     }
 
                 }
