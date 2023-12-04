@@ -253,12 +253,6 @@ class SignUpActivity : AppCompatActivity() {
                 })
         }
     }
-    companion object {
-        const val lengthIdMin = 6
-        const val lengthIdMax = 10
-        const val lengthPwMin = 6
-        const val lengthPwMax = 12
-    }
 
 }
 
