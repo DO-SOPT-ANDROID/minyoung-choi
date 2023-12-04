@@ -38,7 +38,6 @@ class SignUpActivity : AppCompatActivity() {
 
             //텍스트 감시
             setTextWatchers()
-            SignUpAviliable()
 
             //가입하기 버튼 눌렸을 때
             btSignupButton.setOnClickListener {
@@ -73,14 +72,6 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("ResourceAsColor")
-    private fun SignUpAviliable() {
-        if (signUpIdAvailable == 1 && signUpPwAvailable == 1) {
-            Toast.makeText(this@SignUpActivity, "가능", Toast.LENGTH_SHORT).show()
-
-            Toast.makeText(this@SignUpActivity, "가능", Toast.LENGTH_SHORT).show()
-        }
-    }
 
 
     @SuppressLint("ResourceAsColor")
