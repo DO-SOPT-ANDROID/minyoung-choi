@@ -52,7 +52,7 @@ class SignUpActivity : AppCompatActivity() {
                     val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
 
                     Toast.makeText(this@SignUpActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
-//                    /*
+//   도전과제 꼭 할거라서 남겨놨습니다!                 /*
 //                                //유저정보 -> 리스트로 구성
 //                                val userInfoList = UserInfoToListString()
 //
@@ -78,9 +78,6 @@ class SignUpActivity : AppCompatActivity() {
         if (signUpIdAvailable == 1 && signUpPwAvailable == 1) {
             Toast.makeText(this@SignUpActivity, "가능", Toast.LENGTH_SHORT).show()
 
-            //색 안변함 이슈///////////////////////
-            binding.btSignupButton.setBackgroundColor(ContextCompat.getColor(this, R.color.point))
-            /////////////////////////////////
             Toast.makeText(this@SignUpActivity, "가능", Toast.LENGTH_SHORT).show()
         }
     }
@@ -96,21 +93,13 @@ class SignUpActivity : AppCompatActivity() {
 
                 override fun afterTextChanged(s: Editable?) {
 
-//             //       var idPattern="^(?=.[A-Za-z])(?=.[0-9])[A-Za-z[0-9]]{6,10}$"
-///*
-//                    if((s != null) && (s.length in (lengthIdMin..lengthIdMax) )
-//*/
-//
-//                    //길이 확인
-///*
-//                    if ((s == null) || (s.length !in (lengthIdMin..lengthIdMax))) {
-//*/
                     if (idPattern.matcher(s).matches()) {
                         //조건맞을때
                         etSignupPw.error = null
                         signUpIdAvailable = 1
                         etSignupId.setBackgroundResource(R.drawable.shape_white_line_8_rect)
-
+                        if(signUpPwAvailable==1)
+                            btSignupButton.setBackgroundResource(R.drawable.shape_green_fill_rect)
 
                     } else {
                         etSignupPw.error = getString(R.string.signUpIdErrorMsg)
@@ -132,16 +121,13 @@ class SignUpActivity : AppCompatActivity() {
                 //입력값 있고나서
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     //여기에 입력 후 내용물 감시
-///*
-//                    if ((s != null) && ((s.length !in (lengthIdMin..lengthIdMax))*/
-///* || 영문숫자조건 안맞을때*//*
-//)) {
-//*/
                     if (idPattern.matcher(s).matches()) {
                         //조건 맞을때
                         etSignupId.error = null
                         signUpIdAvailable = 1
                         etSignupId.setBackgroundResource(R.drawable.shape_white_line_8_rect)
+                        if(signUpPwAvailable==1)
+                            btSignupButton.setBackgroundResource(R.drawable.shape_green_fill_rect)
 
 
                     } else {
@@ -171,6 +157,8 @@ class SignUpActivity : AppCompatActivity() {
                         etSignupPw.error = null
                         signUpPwAvailable = 1
                         etSignupPw.setBackgroundResource(R.drawable.shape_white_line_8_rect)
+                        if(signUpIdAvailable==1)
+                            btSignupButton.setBackgroundResource(R.drawable.shape_green_fill_rect)
 
                     }
                 }
@@ -196,21 +184,17 @@ class SignUpActivity : AppCompatActivity() {
                         etSignupPw.error = null
                         signUpPwAvailable = 1
                         etSignupPw.setBackgroundResource(R.drawable.shape_white_line_8_rect)
+                        if(signUpIdAvailable==1)
+                            btSignupButton.setBackgroundResource(R.drawable.shape_green_fill_rect)
+
 
                     }
 
                 }
             })
 
-            if (signUpPwAvailable == 1 && signUpIdAvailable == 1) {
-                btSignupButton.setBackgroundColor(
-                    ContextCompat.getColor(
-                        applicationContext,
-                        R.color.point
-                    )
-                )
-                Toast.makeText(this@SignUpActivity, "가능", Toast.LENGTH_SHORT).show()
-            }
+            if (signUpPwAvailable == 1 && signUpIdAvailable == 1)
+                btSignupButton.setBackgroundResource(R.drawable.shape_green_fill_rect)
 
         }
     }
@@ -219,6 +203,7 @@ class SignUpActivity : AppCompatActivity() {
         (!binding.etSignupNickname.text.isBlank() && !binding.etSignupNickname.text.isBlank())
 
 
+//       여기도 심화과제할거라서!
 //        private fun sendUserInfo(
 //            intent: Intent,
 //            userInfoList: List<String>
