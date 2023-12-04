@@ -1,12 +1,12 @@
 package org.sopt.dosopttemplate.module
 
-import org.sopt.dosopttemplate.retrofit2data.RequestInquiryDto
+import org.sopt.dosopttemplate.data.dto.request.RequestLoginDto
+import org.sopt.dosopttemplate.data.dto.request.RequestSignUpDto
+import org.sopt.dosopttemplate.data.dto.request.RequestUserDataDto
+import org.sopt.dosopttemplate.data.dto.response.ResponseLoginDto
 import retrofit2.Call
-import org.sopt.dosopttemplate.retrofit2data.RequestLoginDto
-import org.sopt.dosopttemplate.retrofit2data.RequestSignUpDto
-import org.sopt.dosopttemplate.retrofit2data.ResponseInquiryDto
-import org.sopt.dosopttemplate.retrofit2data.ResponseLoginDto
 import org.sopt.dosopttemplate.data.dto.response.ResponseSignUpDto
+import org.sopt.dosopttemplate.data.dto.response.ResponseUserDataDto
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -26,6 +26,6 @@ interface AuthService {
     @POST("api/v1/members/{memberId}")
 
     fun inquiry(
-        @Body request: RequestInquiryDto,
-    ): Call<ResponseInquiryDto>
+        @Body request: RequestUserDataDto,
+    ): Call<ResponseUserDataDto>
 }

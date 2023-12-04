@@ -2,10 +2,9 @@ package org.sopt.dosopttemplate.presentation.follower
 
 import androidx.recyclerview.widget.RecyclerView
 import org.sopt.dosopttemplate.databinding.ItemFollowerBinding
-import org.sopt.dosopttemplate.follower.FollowerDto
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import org.sopt.dosopttemplate.follower.Data
+import org.sopt.dosopttemplate.data.dataclass.Data
 
 class FollowerViewHolder (private val binding: ItemFollowerBinding) : RecyclerView.ViewHolder(binding.root){
 

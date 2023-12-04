@@ -7,7 +7,6 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.sopt.dosopttemplate.BuildConfig
-import org.sopt.dosopttemplate.FollowerService
 import retrofit2.Retrofit
 
 object ApiFactory {
