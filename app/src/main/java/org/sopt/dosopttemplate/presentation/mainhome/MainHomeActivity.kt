@@ -4,31 +4,34 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import org.sopt.dosopttemplate.MyApplication
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import org.sopt.dosopttemplate.R
-import org.sopt.dosopttemplate.module.ServicePool.authService
 import org.sopt.dosopttemplate.databinding.ActivityMainhomeBinding
-import org.sopt.dosopttemplate.data.dto.request.RequestUserDataDto
-import org.sopt.dosopttemplate.data.dto.response.ResponseUserDataDto
-import org.sopt.dosopttemplate.presentation.doandroid.DoAndroidFragment
-import org.sopt.dosopttemplate.presentation.follower.FollowerFragment
 import org.sopt.dosopttemplate.presentation.home.HomeFragment
-import org.sopt.dosopttemplate.presentation.mypage.MyPageFragment
-import retrofit2.Call
-import retrofit2.Response
 
 
 class MainHomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainhomeBinding
+    private lateinit var mainHomeViewModel: MainHomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainhomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        mainHomeViewModel = ViewModelProvider(this).get(MainHomeViewModel::class.java)
         //intent로 StringArrayList 형태로 받기
 //        var receivedUserInfoList = intent.getStringArrayListExtra("userInfoList")!!
         //setUserInfoPrefs(receivedUserInfoList)
+
+
+        mainHomeViewModel.navigateTo.observe(this, Observer { fragment ->
+            replaceFragment(fragment)
+        })
+
+        mainHomeViewModel.errorMsg.observe(this, Observer { message ->
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        })
 
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_home)
         if (currentFragment == null) {
@@ -43,6 +46,20 @@ class MainHomeActivity : AppCompatActivity() {
         clickBottomNavigation()
     }
 
+    private fun clickBottomNavigation() {
+        var userId= intent.getIntExtra("id", -1)
+
+        binding.bnvHome.setOnItemSelectedListener {
+            mainHomeViewModel.clickBottomNavigation(it.itemId, userId)
+        }
+    }
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fcv_home, fragment)
+            .commit()
+    }
+
+// 이 아래줄은 모두 주석입니다....급하게 과제하느라 나중에 도전 심화과제 할 때 필요할거같아서 일단은 남겨놓겠습니다!
 /*
     //sharedpreference로 유저 data 넘기기
     private fun setUserInfoPrefs(receivedUserInfoList: ArrayList<String>) {
@@ -53,10 +70,13 @@ class MainHomeActivity : AppCompatActivity() {
     }
 */
 
+/*
     private fun clickBottomNavigation() {
         var userId= intent.getIntExtra("id", -1)
 
         binding.bnvHome.setOnItemSelectedListener {
+
+
             when (it.itemId) {
                 R.id.menu_home -> {
                     replaceFragment(HomeFragment())
@@ -83,11 +103,6 @@ class MainHomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fcv_home, fragment)
-            .commit()
-    }
 
     private fun inquiryUserInfo(userId:Int)
     {
@@ -115,4 +130,5 @@ class MainHomeActivity : AppCompatActivity() {
             }
             )
     }
+*/
 }
