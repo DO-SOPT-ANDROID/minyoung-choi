@@ -80,7 +80,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkLoginAvailableFromServer(id: String, password: String) {
-        authService.login(RequestLoginDto(id, password))
+        authService.postLogin(RequestLoginDto(id, password))
             .enqueue(object : Callback<ResponseLoginDto> {
                 override fun onResponse(
                     call: Call<ResponseLoginDto>,

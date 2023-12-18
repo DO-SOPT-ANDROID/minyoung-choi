@@ -1,6 +1,5 @@
 package org.sopt.dosopttemplate.presentation.mainhome
 
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +9,6 @@ import org.sopt.dosopttemplate.data.dataclass.Friend
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.data.dto.request.RequestUserDataDto
 import org.sopt.dosopttemplate.data.dto.response.ResponseUserDataDto
-import org.sopt.dosopttemplate.module.ServicePool
 import org.sopt.dosopttemplate.module.ServicePool.authService
 import org.sopt.dosopttemplate.presentation.doandroid.DoAndroidFragment
 import org.sopt.dosopttemplate.presentation.follower.FollowerFragment
@@ -54,7 +52,7 @@ class MainHomeViewModel : ViewModel() {
 
 
     private fun myPageUserInfo(userId: Int) {
-        authService.inquiry(RequestUserDataDto(userId))
+        authService.getUserInfo(userId)
             .enqueue(object : retrofit2.Callback<ResponseUserDataDto> {
                 override fun onResponse(
                     call: Call<ResponseUserDataDto>,
