@@ -47,12 +47,14 @@ class MainHomeActivity : AppCompatActivity() {
     }
 
     private fun clickBottomNavigation() {
-        var userId= intent.getIntExtra("id", -1)
+        var userId = intent.getIntExtra("id", -1)
 
+        mainHomeViewModel.userId=userId
         binding.bnvHome.setOnItemSelectedListener {
-            mainHomeViewModel.clickBottomNavigation(it.itemId, userId)
+            mainHomeViewModel.clickBottomNavigation(it.itemId)
         }
     }
+
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fcv_home, fragment)

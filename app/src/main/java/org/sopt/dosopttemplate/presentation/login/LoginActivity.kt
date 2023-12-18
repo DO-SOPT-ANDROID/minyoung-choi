@@ -1,7 +1,6 @@
 package org.sopt.dosopttemplate.presentation.login
 
 
-
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -87,7 +86,7 @@ class LoginActivity : AppCompatActivity() {
                     response: Response<ResponseLoginDto>,
                 ) {
                     if (response.isSuccessful) {
-                        val data: ResponseLoginDto = response.body()!!
+                        val data: ResponseLoginDto = requireNotNull(response.body()!!)
                         val userId: Int = data.id
                         toast("로그인 성공, 유저의 ID는 $userId 입니다")
                         val intent = Intent(this@LoginActivity, MainHomeActivity::class.java)

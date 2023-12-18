@@ -22,7 +22,8 @@ class MainHomeViewModel : ViewModel() {
     val navigateTo: LiveData<Fragment>
         get() = _navigateTo
 
-    fun clickBottomNavigation(itemId: Int, userId: Int) :Boolean{
+    var userId: Int = 0
+    fun clickBottomNavigation(itemId: Int): Boolean {
 
         when (itemId) {
             R.id.menu_home -> {
@@ -59,7 +60,7 @@ class MainHomeViewModel : ViewModel() {
                     response: Response<ResponseUserDataDto>,
                 ) {
                     if (response.isSuccessful) {
-                        val data: ResponseUserDataDto = response.body()!!
+                        val data: ResponseUserDataDto = requireNotNull(response.body())
                         val userNickname = data.nickname
                         val userUsername = data.username
 

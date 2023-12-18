@@ -9,7 +9,7 @@ import org.sopt.dosopttemplate.databinding.FragmentDoandroidBinding
 
 class DoAndroidFragment : Fragment() {
     private var _binding: FragmentDoandroidBinding? = null
-    private val binding: FragmentDoandroidBinding get() = _binding!!
+    private val binding: FragmentDoandroidBinding get() = requireNotNull(_binding)
 
     override fun onCreateView(
         inflater: LayoutInflater,

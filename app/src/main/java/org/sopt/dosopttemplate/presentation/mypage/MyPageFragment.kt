@@ -11,7 +11,7 @@ import org.sopt.dosopttemplate.databinding.FragmentMypageBinding
 
 class MyPageFragment : Fragment() {
     private var _binding: FragmentMypageBinding? = null
-    private val binding: FragmentMypageBinding get() = _binding!!
+    private val binding: FragmentMypageBinding get() = requireNotNull(_binding!!)
 
     override fun onCreateView(
         inflater: LayoutInflater,
