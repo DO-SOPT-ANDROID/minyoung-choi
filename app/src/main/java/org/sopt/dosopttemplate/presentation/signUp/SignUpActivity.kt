@@ -7,7 +7,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.module.ServicePool.authService
@@ -15,6 +14,7 @@ import org.sopt.dosopttemplate.databinding.ActivitySignupBinding
 import org.sopt.dosopttemplate.presentation.login.LoginActivity
 import org.sopt.dosopttemplate.data.dto.request.RequestSignUpDto
 import org.sopt.dosopttemplate.data.dto.response.ResponseSignUpDto
+import org.sopt.dosopttemplate.utils.toast
 import retrofit2.Call
 import retrofit2.Response
 import java.util.regex.Pattern
@@ -50,7 +50,7 @@ class SignUpActivity : AppCompatActivity() {
                     //토스트 띄우기
                     val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
 
-                    Toast.makeText(this@SignUpActivity, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                    toast("회원가입 성공")
 //   도전과제 꼭 할거라서 남겨놨습니다!                 /*
 //                                //유저정보 -> 리스트로 구성
 //                                val userInfoList = UserInfoToListString()
@@ -61,11 +61,7 @@ class SignUpActivity : AppCompatActivity() {
                     startActivity(intent)
 
                 } else {
-                    Toast.makeText(
-                        this@SignUpActivity,
-                        "모든 정보를 입력해야합니다.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    toast("모든 정보를 입력해야합니다.")
                 }
 
             }

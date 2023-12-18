@@ -3,11 +3,8 @@ package org.sopt.dosopttemplate.presentation.login
 //import com.codingmy.sopt_w1_hw1.MainActivity
 
 
-//이 코드 대신 아래 코드로 수정
-//import com.codingmy.sopt_w1_hw1.databinding.ActivityLoginBinding
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.sopt.dosopttemplate.presentation.mainhome.MainHomeActivity
 import org.sopt.dosopttemplate.module.ServicePool.authService
@@ -15,6 +12,8 @@ import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
 import org.sopt.dosopttemplate.databinding.ActivityLoginBinding
 import org.sopt.dosopttemplate.data.dto.request.RequestLoginDto
 import org.sopt.dosopttemplate.data.dto.response.ResponseLoginDto
+import org.sopt.dosopttemplate.utils.toast
+import org.sopt.dosopttemplate.utils.snackbar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,9 +55,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                     //로그인 실패
                     else {
-                        Snackbar.make(
-                            binding.root, "로그인을 실패했습니다.", Snackbar.LENGTH_SHORT
-                        ).show()
+                        snackbar(binding.root, "로그인을 실패했습니다.")
                     }
                 }
         */
@@ -91,24 +88,17 @@ class LoginActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val data: ResponseLoginDto = response.body()!!
                         val userId: Int = data.id
-                        Toast.makeText(
-                            this@LoginActivity,
-                            "로그인 성공, 유저의 ID는 $userId 입니다",
-                            Toast.LENGTH_SHORT,
-                        ).show()
+                        toast("로그인 성공, 유저의 ID는 $userId 입니다")
                         val intent = Intent(this@LoginActivity, MainHomeActivity::class.java)
                         intent.putExtra("id", userId)
                         startActivity(intent)
                     } else {
-                        Toast.makeText(
-                            this@LoginActivity,
-                            "아이디와 패스워드가 일치 하지 않습니다.", Toast.LENGTH_SHORT
-                        ).show()
+                        toast("아이디와 패스워드가 일치 하지 않습니다.")
                     }
                 }
 
                 override fun onFailure(call: Call<ResponseLoginDto>, t: Throwable) {
-                    Toast.makeText(this@LoginActivity, "서버 에러 발생", Toast.LENGTH_SHORT).show()
+                    toast("서버 에러 발생")
                 }
             })
     }
