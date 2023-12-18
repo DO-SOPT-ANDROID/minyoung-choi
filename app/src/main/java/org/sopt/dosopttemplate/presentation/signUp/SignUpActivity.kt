@@ -80,23 +80,15 @@ class SignUpActivity : AppCompatActivity() {
 
                 override fun afterTextChanged(s: Editable?) {
 
-                    if (idPattern.matcher(s).matches()) {
-                        //조건맞을때
-                        etSignupPw.error = null
-                        signUpIdAvailable = true
-                        etSignupId.setBackgroundResource(R.drawable.shape_white_line_8_rect)
-                        if (signUpPwAvailable)
-                            btSignupButton.setBackgroundResource(R.drawable.shape_green_fill_rect)
-
-                    } else {
-                        //입력값이 not null일때==잘못된 값 들어왔을 때
-                        //경고 창 띄우기
-                        if (s != null) {
-                            etSignupPw.error = getString(R.string.signUpIdErrorMsg)
-                            signUpIdAvailable = false
-                            etSignupId.setBackgroundResource(R.drawable.shape_red_line_8_rect)
-                        }
+                    if (s != null) {
+                        setEditView("id", idPattern.matcher(s).matches())
                     }
+                    //공란일 때
+                    else {
+                        setIdEtAvailable()
+                        signUpIdAvailable = false
+                    }
+                    setSignUpbutton()
                 }
 
                 //변하기 전
@@ -111,28 +103,74 @@ class SignUpActivity : AppCompatActivity() {
                 //입력값 있고나서
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     //여기에 입력 후 내용물 감시
-                    if (idPattern.matcher(s).matches()) {
-                        //조건 맞을때
-                        etSignupId.error = null
-                        signUpIdAvailable = true
-                        etSignupId.setBackgroundResource(R.drawable.shape_white_line_8_rect)
-                        if (signUpPwAvailable)
-                            btSignupButton.setBackgroundResource(R.drawable.shape_green_fill_rect)
-
-
-                    } else {
-                        if (s != null) {
-
-                            etSignupId.error = getString(R.string.signUpIdErrorMsg)
-                            signUpIdAvailable = false
-                            etSignupId.setBackgroundResource(R.drawable.shape_red_line_8_rect)
-                            btSignupButton.setBackgroundResource(R.drawable.shape_gray_fill_rect)
-                        }
+                    if (s != null) {
+                        setEditView("id", idPattern.matcher(s).matches())
                     }
+                    //공란일 때
+                    else {
+                        setIdEtAvailable()
+                        signUpIdAvailable = false
+                    }
+                    setSignUpbutton()
+
 
                 }
             })
         }
+    }
+
+    private fun setSignUpbutton() {
+        if (signUpPwAvailable && signUpIdAvailable)
+            binding.btSignupButton.setBackgroundResource(R.drawable.shape_green_fill_rect)
+        else
+            binding.btSignupButton.setBackgroundResource(R.drawable.shape_gray_fill_rect)
+    }
+
+    private fun setPwEtUnavailable() {
+        binding.etSignupPw.error = getString(R.string.signUpIdErrorMsg)
+        binding.etSignupPw.setBackgroundResource(R.drawable.shape_red_line_8_rect)
+    }
+
+    private fun setPwEtAvailable() {
+        binding.etSignupPw.error = null
+        binding.etSignupPw.setBackgroundResource(R.drawable.shape_white_line_8_rect)
+    }
+
+    private fun setIdEtUnavailable() {
+        binding.etSignupId.error = getString(R.string.signUpIdErrorMsg)
+        binding.etSignupId.setBackgroundResource(R.drawable.shape_red_line_8_rect)
+    }
+
+    private fun setIdEtAvailable() {
+        binding.etSignupId.error = null
+        binding.etSignupId.setBackgroundResource(R.drawable.shape_white_line_8_rect)
+    }
+
+    //경고문구 에러 문구 세팅
+    private fun setEditView(now: String, status: Boolean) {
+        //id 일 때
+        if (now == "id") {
+            signUpIdAvailable = status
+            //입력 값 정상일 때
+            if (status) {
+                setIdEtAvailable()
+            }
+            //입력값이 조건에 안 맞을 때
+            else {
+                setIdEtUnavailable()
+            }
+        }
+        //pw 일 때
+        else {
+            signUpPwAvailable = status
+            if (status) {
+                setPwEtAvailable()
+            } else {
+                setPwEtUnavailable()
+            }
+
+        }
+
     }
 
     private fun setPwTextWatchers() {
@@ -142,23 +180,16 @@ class SignUpActivity : AppCompatActivity() {
                     Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{6,12}$")
 
                 override fun afterTextChanged(s: Editable?) {
-//                    if ((s == null) || (s.length !in (lengthPwMin..lengthPwMax))) {
-                    if (!pwPattern.matcher(s).matches()) {
-                        if (s != null) {
-
-                            etSignupPw.error = getString(R.string.signUpPwErrorMsg)
-                            signUpPwAvailable = false
-                            etSignupPw.setBackgroundResource(R.drawable.shape_red_line_8_rect)
-                            btSignupButton.setBackgroundResource(R.drawable.shape_gray_fill_rect)
-                        }
-                    } else {
-                        etSignupPw.error = null
-                        signUpPwAvailable = true
-                        etSignupPw.setBackgroundResource(R.drawable.shape_white_line_8_rect)
-                        if (signUpIdAvailable)
-                            btSignupButton.setBackgroundResource(R.drawable.shape_green_fill_rect)
-
+                    if (s != null) {
+                        setEditView("pw", pwPattern.matcher(s).matches())
                     }
+                    //공란일 때
+                    else {
+                        setPwEtAvailable()
+                        signUpPwAvailable = false
+                    }
+                    setSignUpbutton()
+
                 }
 
                 override fun beforeTextChanged(
@@ -171,29 +202,19 @@ class SignUpActivity : AppCompatActivity() {
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     //여기에 입력 후 내용물 감시
-                    if (!pwPattern.matcher(s).matches()) {
-                        //조건안맞
-                        if (s != null) {
-                            etSignupPw.error = getString(R.string.signUpIdErrorMsg)
-                            signUpPwAvailable = false
-                            etSignupPw.setBackgroundResource(R.drawable.shape_red_line_8_rect)
-                            btSignupButton.setBackgroundResource(R.drawable.shape_gray_fill_rect)
-                        }
-                    } else {
-                        etSignupPw.error = null
-                        signUpPwAvailable = true
-                        etSignupPw.setBackgroundResource(R.drawable.shape_white_line_8_rect)
-                        if (signUpIdAvailable)
-                            btSignupButton.setBackgroundResource(R.drawable.shape_green_fill_rect)
-
-
+                    if (s != null) {
+                        setEditView("pw", pwPattern.matcher(s).matches())
                     }
+                    //공란일 때
+
+                    else {
+                        setPwEtAvailable()
+                        signUpPwAvailable = false
+                    }
+                    setSignUpbutton()
 
                 }
             })
-
-            if (signUpPwAvailable && signUpIdAvailable)
-                btSignupButton.setBackgroundResource(R.drawable.shape_green_fill_rect)
 
         }
     }
