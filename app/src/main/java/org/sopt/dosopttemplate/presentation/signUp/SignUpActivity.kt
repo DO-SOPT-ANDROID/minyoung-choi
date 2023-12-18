@@ -22,10 +22,11 @@ import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
-    //0일 때 가입 불가
-    //1일 때 가입 가능
-    private var signUpIdAvailable = 0
-    private var signUpPwAvailable = 0
+
+    //false 일 때 가입 불가
+    //true 일 때 가입 가능
+    private var signUpIdAvailable = false
+    private var signUpPwAvailable = false
 
 
     @SuppressLint("SuspiciousIndentation", "ResourceAsColor")
@@ -37,13 +38,14 @@ class SignUpActivity : AppCompatActivity() {
             setContentView(binding.root)
 
             //텍스트 감시
-            setTextWatchers()
+            setIdTextWatchers()
+            setPwTextWatchers()
 
             //가입하기 버튼 눌렸을 때
             btSignupButton.setOnClickListener {
                 //가입 조건 확인
 
-                if (checkCondition() && signUpIdAvailable == 1 && signUpPwAvailable == 1) {
+                if (checkCondition() && signUpIdAvailable && signUpPwAvailable) {
                     signUp()
 
 
@@ -69,9 +71,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
-
-    @SuppressLint("ResourceAsColor")
-    private fun setTextWatchers() {
+    private fun setIdTextWatchers() {
         with(binding) {
 
             //id 조건 확인
@@ -83,16 +83,19 @@ class SignUpActivity : AppCompatActivity() {
                     if (idPattern.matcher(s).matches()) {
                         //조건맞을때
                         etSignupPw.error = null
-                        signUpIdAvailable = 1
+                        signUpIdAvailable = true
                         etSignupId.setBackgroundResource(R.drawable.shape_white_line_8_rect)
-                        if(signUpPwAvailable==1)
+                        if (signUpPwAvailable)
                             btSignupButton.setBackgroundResource(R.drawable.shape_green_fill_rect)
 
                     } else {
-                        etSignupPw.error = getString(R.string.signUpIdErrorMsg)
-                        signUpIdAvailable = 0
-                        etSignupId.setBackgroundResource(R.drawable.shape_red_line_8_rect)
-
+                        //입력값이 not null일때==잘못된 값 들어왔을 때
+                        //경고 창 띄우기
+                        if (s != null) {
+                            etSignupPw.error = getString(R.string.signUpIdErrorMsg)
+                            signUpIdAvailable = false
+                            etSignupId.setBackgroundResource(R.drawable.shape_red_line_8_rect)
+                        }
                     }
                 }
 
@@ -111,23 +114,29 @@ class SignUpActivity : AppCompatActivity() {
                     if (idPattern.matcher(s).matches()) {
                         //조건 맞을때
                         etSignupId.error = null
-                        signUpIdAvailable = 1
+                        signUpIdAvailable = true
                         etSignupId.setBackgroundResource(R.drawable.shape_white_line_8_rect)
-                        if(signUpPwAvailable==1)
+                        if (signUpPwAvailable)
                             btSignupButton.setBackgroundResource(R.drawable.shape_green_fill_rect)
 
 
                     } else {
-                        etSignupId.error = getString(R.string.signUpIdErrorMsg)
-                        signUpIdAvailable = 0
-                        etSignupId.setBackgroundResource(R.drawable.shape_red_line_8_rect)
-                        btSignupButton.setBackgroundResource(R.drawable.shape_gray_fill_rect)
+                        if (s != null) {
 
+                            etSignupId.error = getString(R.string.signUpIdErrorMsg)
+                            signUpIdAvailable = false
+                            etSignupId.setBackgroundResource(R.drawable.shape_red_line_8_rect)
+                            btSignupButton.setBackgroundResource(R.drawable.shape_gray_fill_rect)
+                        }
                     }
 
                 }
             })
+        }
+    }
 
+    private fun setPwTextWatchers() {
+        with(binding) {
             etSignupPw.addTextChangedListener(object : TextWatcher {
                 val pwPattern =
                     Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{6,12}$")
@@ -135,16 +144,18 @@ class SignUpActivity : AppCompatActivity() {
                 override fun afterTextChanged(s: Editable?) {
 //                    if ((s == null) || (s.length !in (lengthPwMin..lengthPwMax))) {
                     if (!pwPattern.matcher(s).matches()) {
-                        etSignupPw.error = getString(R.string.signUpPwErrorMsg)
-                        signUpPwAvailable = 0
-                        etSignupPw.setBackgroundResource(R.drawable.shape_red_line_8_rect)
-                        btSignupButton.setBackgroundResource(R.drawable.shape_gray_fill_rect)
+                        if (s != null) {
 
+                            etSignupPw.error = getString(R.string.signUpPwErrorMsg)
+                            signUpPwAvailable = false
+                            etSignupPw.setBackgroundResource(R.drawable.shape_red_line_8_rect)
+                            btSignupButton.setBackgroundResource(R.drawable.shape_gray_fill_rect)
+                        }
                     } else {
                         etSignupPw.error = null
-                        signUpPwAvailable = 1
+                        signUpPwAvailable = true
                         etSignupPw.setBackgroundResource(R.drawable.shape_white_line_8_rect)
-                        if(signUpIdAvailable==1)
+                        if (signUpIdAvailable)
                             btSignupButton.setBackgroundResource(R.drawable.shape_green_fill_rect)
 
                     }
@@ -162,16 +173,17 @@ class SignUpActivity : AppCompatActivity() {
                     //여기에 입력 후 내용물 감시
                     if (!pwPattern.matcher(s).matches()) {
                         //조건안맞
-                        etSignupPw.error = getString(R.string.signUpIdErrorMsg)
-                        signUpPwAvailable = 0
-                        etSignupPw.setBackgroundResource(R.drawable.shape_red_line_8_rect)
-                        btSignupButton.setBackgroundResource(R.drawable.shape_gray_fill_rect)
-
+                        if (s != null) {
+                            etSignupPw.error = getString(R.string.signUpIdErrorMsg)
+                            signUpPwAvailable = false
+                            etSignupPw.setBackgroundResource(R.drawable.shape_red_line_8_rect)
+                            btSignupButton.setBackgroundResource(R.drawable.shape_gray_fill_rect)
+                        }
                     } else {
                         etSignupPw.error = null
-                        signUpPwAvailable = 1
+                        signUpPwAvailable = true
                         etSignupPw.setBackgroundResource(R.drawable.shape_white_line_8_rect)
-                        if(signUpIdAvailable==1)
+                        if (signUpIdAvailable)
                             btSignupButton.setBackgroundResource(R.drawable.shape_green_fill_rect)
 
 
@@ -180,7 +192,7 @@ class SignUpActivity : AppCompatActivity() {
                 }
             })
 
-            if (signUpPwAvailable == 1 && signUpIdAvailable == 1)
+            if (signUpPwAvailable && signUpIdAvailable)
                 btSignupButton.setBackgroundResource(R.drawable.shape_green_fill_rect)
 
         }
@@ -226,16 +238,12 @@ class SignUpActivity : AppCompatActivity() {
                         response: Response<ResponseSignUpDto>,
                     ) {
                         if (response.isSuccessful) {
-                            Toast.makeText(
-                                this@SignUpActivity,
-                                "회원가입 성공",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            toast("회원가입 성공")
                         }
                     }
 
                     override fun onFailure(call: Call<ResponseSignUpDto>, t: Throwable) {
-                        Toast.makeText(this@SignUpActivity, "서버 에러 발생", Toast.LENGTH_SHORT).show()
+                        toast("서버 에러 발생")
                     }
                 })
         }
