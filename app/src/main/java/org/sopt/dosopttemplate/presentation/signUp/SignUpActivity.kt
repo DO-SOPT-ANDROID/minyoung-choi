@@ -1,6 +1,5 @@
 package org.sopt.dosopttemplate.presentation.signUp
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -28,7 +27,6 @@ class SignUpActivity : AppCompatActivity() {
     private var signUpPwAvailable = false
 
 
-    @SuppressLint("SuspiciousIndentation", "ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupBinding.inflate(layoutInflater)
@@ -43,7 +41,6 @@ class SignUpActivity : AppCompatActivity() {
             //가입하기 버튼 눌렸을 때
             btSignupButton.setOnClickListener {
                 //가입 조건 확인
-
                 if (checkCondition() && signUpIdAvailable && signUpPwAvailable) {
                     signUp()
 
@@ -242,17 +239,17 @@ class SignUpActivity : AppCompatActivity() {
 
         btSignupButton.setOnClickListener {
             authService.signUp(RequestSignUpDto(id, pw, nickname))
-                .enqueue(object : retrofit2.Callback<ResponseSignUpDto> {
+                .enqueue(object : retrofit2.Callback<Unit> {
                     override fun onResponse(
-                        call: Call<ResponseSignUpDto>,
-                        response: Response<ResponseSignUpDto>,
+                        call: Call<Unit>,
+                        response: Response<Unit>,
                     ) {
                         if (response.isSuccessful) {
                             toast("회원가입 성공")
                         }
                     }
 
-                    override fun onFailure(call: Call<ResponseSignUpDto>, t: Throwable) {
+                    override fun onFailure(call: Call<Unit>, t: Throwable) {
                         toast("서버 에러 발생")
                     }
                 })

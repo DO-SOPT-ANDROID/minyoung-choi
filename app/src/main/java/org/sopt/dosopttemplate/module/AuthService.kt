@@ -18,13 +18,11 @@ interface AuthService {
     ): Call<ResponseLoginDto>
 
     @POST("api/v1/members")
-
     fun signUp(
         @Body request: RequestSignUpDto,
-    ): Call<ResponseSignUpDto>
+    ): Call<Unit>
 
     @POST("api/v1/members/{memberId}")
-
     fun inquiry(
         @Body request: RequestUserDataDto,
     ): Call<ResponseUserDataDto>

@@ -1,6 +1,5 @@
 package org.sopt.dosopttemplate.presentation.login
 
-//import com.codingmy.sopt_w1_hw1.MainActivity
 
 
 import android.content.Intent
@@ -71,10 +70,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initLoginClickListener() {
-        val id = binding.etLoginId.text.toString()
-        val password = binding.etLoginPw.text.toString()
-        binding.btLogin.setOnClickListener {
-            checkLoginAvailableFromServer(id, password)
+        with(binding) {
+            val id = binding.etLoginId.text.toString()
+            val password = binding.etLoginPw.text.toString()
+            binding.btLogin.setOnClickListener {
+                checkLoginAvailableFromServer(id, password)
+            }
         }
     }
 
