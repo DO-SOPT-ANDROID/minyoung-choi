@@ -7,7 +7,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 
-import androidx.core.content.ContextCompat
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.module.ServicePool.authService
 import org.sopt.dosopttemplate.databinding.ActivitySignupBinding
@@ -79,16 +78,7 @@ class SignUpActivity : AppCompatActivity() {
                 val idPattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9]).{6,10}$")
 
                 override fun afterTextChanged(s: Editable?) {
-
-                    if (s != null) {
-                        setEditView("id", idPattern.matcher(s).matches())
-                    }
-                    //공란일 때
-                    else {
-                        setIdEtAvailable()
-                        signUpIdAvailable = false
-                    }
-                    setSignUpbutton()
+                    setIdEt(s)
                 }
 
                 //변하기 전
@@ -103,18 +93,22 @@ class SignUpActivity : AppCompatActivity() {
                 //입력값 있고나서
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     //여기에 입력 후 내용물 감시
+                    setIdEt(s)
+
+                }
+
+                private fun setIdEt(s: CharSequence?) {
                     if (s != null) {
                         setEditView("id", idPattern.matcher(s).matches())
                     }
                     //공란일 때
                     else {
-                        setIdEtAvailable()
+                        setIdEtWarning()
                         signUpIdAvailable = false
                     }
                     setSignUpbutton()
-
-
                 }
+
             })
         }
     }
@@ -126,22 +120,22 @@ class SignUpActivity : AppCompatActivity() {
             binding.btSignupButton.setBackgroundResource(R.drawable.shape_gray_fill_rect)
     }
 
-    private fun setPwEtUnavailable() {
+    private fun removePwEtWarning() {
         binding.etSignupPw.error = getString(R.string.signUpIdErrorMsg)
         binding.etSignupPw.setBackgroundResource(R.drawable.shape_red_line_8_rect)
     }
 
-    private fun setPwEtAvailable() {
+    private fun setPwEtWarning() {
         binding.etSignupPw.error = null
         binding.etSignupPw.setBackgroundResource(R.drawable.shape_white_line_8_rect)
     }
 
-    private fun setIdEtUnavailable() {
+    private fun removeIdEtWarning() {
         binding.etSignupId.error = getString(R.string.signUpIdErrorMsg)
         binding.etSignupId.setBackgroundResource(R.drawable.shape_red_line_8_rect)
     }
 
-    private fun setIdEtAvailable() {
+    private fun setIdEtWarning() {
         binding.etSignupId.error = null
         binding.etSignupId.setBackgroundResource(R.drawable.shape_white_line_8_rect)
     }
@@ -153,20 +147,20 @@ class SignUpActivity : AppCompatActivity() {
             signUpIdAvailable = status
             //입력 값 정상일 때
             if (status) {
-                setIdEtAvailable()
+                setIdEtWarning()
             }
             //입력값이 조건에 안 맞을 때
             else {
-                setIdEtUnavailable()
+                removeIdEtWarning()
             }
         }
         //pw 일 때
         else {
             signUpPwAvailable = status
             if (status) {
-                setPwEtAvailable()
+                setPwEtWarning()
             } else {
-                setPwEtUnavailable()
+                removePwEtWarning()
             }
 
         }
@@ -180,15 +174,7 @@ class SignUpActivity : AppCompatActivity() {
                     Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{6,12}$")
 
                 override fun afterTextChanged(s: Editable?) {
-                    if (s != null) {
-                        setEditView("pw", pwPattern.matcher(s).matches())
-                    }
-                    //공란일 때
-                    else {
-                        setPwEtAvailable()
-                        signUpPwAvailable = false
-                    }
-                    setSignUpbutton()
+                    setPwEt(s)
 
                 }
 
@@ -202,18 +188,21 @@ class SignUpActivity : AppCompatActivity() {
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     //여기에 입력 후 내용물 감시
+                    setPwEt(s)
+                }
+
+                private fun setPwEt(s: CharSequence?) {
                     if (s != null) {
                         setEditView("pw", pwPattern.matcher(s).matches())
                     }
                     //공란일 때
-
                     else {
-                        setPwEtAvailable()
+                        setPwEtWarning()
                         signUpPwAvailable = false
                     }
                     setSignUpbutton()
-
                 }
+
             })
 
         }
