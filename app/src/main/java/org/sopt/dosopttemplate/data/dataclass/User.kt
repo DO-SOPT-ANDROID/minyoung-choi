@@ -1,7 +1,9 @@
-package org.sopt.dosopttemplate
+package org.sopt.dosopttemplate.data.dataclass
+
+import org.sopt.dosopttemplate.R
 
 data class User(
-    val profileImage: Int=R.drawable.pr_image,
+    val profileImage: Int= R.drawable.pr_image,
     var nick: String="",
     val self_description: String="",
     var id: String="",

@@ -6,10 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import org.sopt.dosopttemplate.FollowerAdapter
 import org.sopt.dosopttemplate.module.ServicePool.followerService
 import org.sopt.dosopttemplate.databinding.FragmentFollowerBinding
-import org.sopt.dosopttemplate.data.dto.follower.FollowerDto
+import org.sopt.dosopttemplate.data.dataclass.FollowerDto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

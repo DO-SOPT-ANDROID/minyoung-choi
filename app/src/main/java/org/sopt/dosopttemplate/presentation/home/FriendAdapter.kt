@@ -4,8 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.sopt.dosopttemplate.Friend
-import org.sopt.dosopttemplate.FriendViewHolder
+import org.sopt.dosopttemplate.data.dataclass.Friend
 import org.sopt.dosopttemplate.databinding.ItemFriendBinding
 
 class FriendAdapter(context: Context) : RecyclerView.Adapter<FriendViewHolder>() {

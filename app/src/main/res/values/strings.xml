@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DoSoptTemplate</string>
+    <string name="signUpIdErrorMsg">숫자와 영문자 조합으로 6~10자를 사용해주세요</string>
+    <string name="signUpPwErrorMsg">숫자, 영문, 특수문자 포함 6~12자를 사용해주세요</string>
 </resources>

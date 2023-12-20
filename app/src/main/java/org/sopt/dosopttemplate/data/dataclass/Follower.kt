@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate
+package org.sopt.dosopttemplate.data.dataclass
 
 data class Follower(
     val profileImage: String,

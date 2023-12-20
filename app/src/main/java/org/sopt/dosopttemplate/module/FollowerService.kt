@@ -1,7 +1,7 @@
 package org.sopt.dosopttemplate.module
 
 
-import org.sopt.dosopttemplate.data.dto.follower.FollowerDto
+import org.sopt.dosopttemplate.data.dataclass.FollowerDto
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

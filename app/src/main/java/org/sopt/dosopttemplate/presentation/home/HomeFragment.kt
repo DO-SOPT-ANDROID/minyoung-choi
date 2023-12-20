@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.sopt.dosopttemplate.MyApplication
 import org.sopt.dosopttemplate.R
-import org.sopt.dosopttemplate.User
-import org.sopt.dosopttemplate.UserAdapter
+import org.sopt.dosopttemplate.data.dataclass.User
+import org.sopt.dosopttemplate.presentation.mypage.UserAdapter
 import org.sopt.dosopttemplate.databinding.FragmentHomeBinding
 import org.sopt.dosopttemplate.presentation.mainhome.MainHomeViewModel
 

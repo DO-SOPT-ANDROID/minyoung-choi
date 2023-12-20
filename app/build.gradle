@@ -42,7 +42,7 @@ android {
         viewBinding = true
 
         //사용할 객체 가져오기 (base_url 감추는 작업)
-        buildConfig true
+        buildConfig = true
     }
 }
 

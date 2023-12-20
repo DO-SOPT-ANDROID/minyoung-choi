@@ -1,6 +1,7 @@
-package org.sopt.dosopttemplate
+package org.sopt.dosopttemplate.presentation.home
 
 import androidx.recyclerview.widget.RecyclerView
+import org.sopt.dosopttemplate.data.dataclass.Friend
 import org.sopt.dosopttemplate.databinding.ItemFriendBinding
 
 

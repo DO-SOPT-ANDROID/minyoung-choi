@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate
+package org.sopt.dosopttemplate.data.dataclass
 
 data class Friend(
     val profileImage: Int,

@@ -1,11 +1,10 @@
-package org.sopt.dosopttemplate.data.dto.follower.retrofit2data
+package org.sopt.dosopttemplate.data.dto.request
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
-
-data class RequestInquiryDto (
+data class RequestUserDataDto (
     @SerializedName("id")
     val id:Int,
 )

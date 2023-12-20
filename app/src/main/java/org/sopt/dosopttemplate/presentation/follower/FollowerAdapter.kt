@@ -1,11 +1,11 @@
-package org.sopt.dosopttemplate
+package org.sopt.dosopttemplate.presentation.follower
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import org.sopt.dosopttemplate.data.dataclass.Data
 import org.sopt.dosopttemplate.databinding.ItemFollowerBinding
-import org.sopt.dosopttemplate.follower.Data
 
 class FollowerAdapter(context: Context) : RecyclerView.Adapter<FollowerViewHolder>() {
     private val inflater by lazy {

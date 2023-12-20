@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate.data.dto.follower
+package org.sopt.dosopttemplate.data.dataclass
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
