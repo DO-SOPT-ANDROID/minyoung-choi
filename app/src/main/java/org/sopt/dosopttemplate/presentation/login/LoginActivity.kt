@@ -4,26 +4,26 @@ package org.sopt.dosopttemplate.presentation.login
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import org.sopt.dosopttemplate.presentation.mainhome.MainHomeActivity
-import org.sopt.dosopttemplate.module.ServicePool.authService
-import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import org.sopt.dosopttemplate.databinding.ActivityLoginBinding
-import org.sopt.dosopttemplate.data.dto.request.RequestLoginDto
-import org.sopt.dosopttemplate.data.dto.response.ResponseLoginDto
+import org.sopt.dosopttemplate.presentation.mainhome.MainHomeActivity
+import org.sopt.dosopttemplate.presentation.mainhome.MainHomeViewModel
+import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
 import org.sopt.dosopttemplate.utils.toast
-import org.sopt.dosopttemplate.utils.snackbar
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
 
         initLoginClickListener()
@@ -73,12 +73,37 @@ class LoginActivity : AppCompatActivity() {
             val id = binding.etLoginId.text.toString()
             val password = binding.etLoginPw.text.toString()
             binding.btLogin.setOnClickListener {
-                checkLoginAvailableFromServer(id, password)
+                loginViewModel.checkLoginAvailableFromServer(id, password)
+                checkLoginAvailableFromServer()
             }
         }
     }
 
-    private fun checkLoginAvailableFromServer(id: String, password: String) {
+    private fun checkLoginAvailableFromServer() {
+        lifecycleScope.launch {
+            loginViewModel.loginState.collect { loginState ->
+                when (loginState) {
+                    is LoginState.Success -> {
+                        toast("로그인 성공")
+                        val intent = Intent(this@LoginActivity, MainHomeActivity::class.java)
+                        startActivity(intent)
+                    }
+
+                    is LoginState.Error -> {
+                        toast("로그인 실패")
+                    }
+
+                    is LoginState.Loading -> {
+                        toast("로그인 중")
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+
+
         authService.postLogin(RequestLoginDto(id, password))
             .enqueue(object : Callback<ResponseLoginDto> {
                 override fun onResponse(
@@ -101,7 +126,7 @@ class LoginActivity : AppCompatActivity() {
                     toast("서버 에러 발생")
                 }
             })
-    }
+*/
 }
 
 
