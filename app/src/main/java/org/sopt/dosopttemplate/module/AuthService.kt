@@ -15,12 +15,12 @@ import retrofit2.http.Path
 interface AuthService {
 
     @POST("api/v1/members/sign-in")
-    suspend fun postLogin(
+   fun postLogin(
         @Body request: RequestLoginDto,
     ): Response<ResponseLoginDto>
 
     @POST("api/v1/members")
-    fun signUp(
+    fun postSignUp(
         @Body request: RequestSignUpDto,
     ): Response<Unit>
 
