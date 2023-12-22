@@ -4,9 +4,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import org.sopt.dosopttemplate.MyApplication
 import org.sopt.dosopttemplate.data.dataclass.Friend
 import org.sopt.dosopttemplate.R
+import org.sopt.dosopttemplate.data.dataclass.User
+import org.sopt.dosopttemplate.data.dataclass.UserInfo
 import org.sopt.dosopttemplate.data.dto.request.RequestUserDataDto
 import org.sopt.dosopttemplate.data.dto.response.ResponseUserDataDto
 import org.sopt.dosopttemplate.module.ServicePool.authService
@@ -19,10 +22,13 @@ import retrofit2.Response
 
 class MainHomeViewModel : ViewModel() {
     private val _navigateTo = MutableLiveData<Fragment>()
-    val navigateTo: LiveData<Fragment>
-        get() = _navigateTo
+    val navigateTo: LiveData<Fragment> get() = _navigateTo
 
-    var userId: Int = 0
+    private var _userId: MutableLiveData<String> = MutableLiveData<String>()
+    val userId: LiveData<String> = _userId
+    val userPw: MutableLiveData<String> = MutableLiveData<String>()
+
+
     fun clickBottomNavigation(itemId: Int): Boolean {
 
         when (itemId) {
@@ -37,7 +43,7 @@ class MainHomeViewModel : ViewModel() {
             }
 
             R.id.menu_mypage -> {
-                myPageUserInfo(userId)
+                myPageUserInfo()
                 _navigateTo.value = MyPageFragment()
                 return true
             }
@@ -52,29 +58,9 @@ class MainHomeViewModel : ViewModel() {
     }
 
 
-    private fun myPageUserInfo(userId: Int) {
-        authService.getUserInfo(userId)
-            .enqueue(object : retrofit2.Callback<ResponseUserDataDto> {
-                override fun onResponse(
-                    call: Call<ResponseUserDataDto>,
-                    response: Response<ResponseUserDataDto>,
-                ) {
-                    if (response.isSuccessful) {
-                        val data: ResponseUserDataDto = requireNotNull(response.body())
-                        val userNickname = data.nickname
-                        val userUsername = data.username
-
-                        //sharedpreference로 넘기기
-                        MyApplication.prefs.setString("nick", userNickname)
-                        MyApplication.prefs.setString("username", userUsername)
-                        MyApplication.prefs.setString("id", userId.toString())
-                    }
-                }
-
-                override fun onFailure(call: Call<ResponseUserDataDto>, t: Throwable) {
-                    _errorMsg.value = "서버 에러 발생"
-                }
-            })
+    private fun myPageUserInfo() {
+        _userId.value = UserInfo.userInfoList.id
+        userPw.value = UserInfo.userInfoList.pw
     }
 
     private var _errorMsg = MutableLiveData<String>()
