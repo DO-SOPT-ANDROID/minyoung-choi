@@ -88,7 +88,7 @@ class LoginActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val data: ResponseLoginDto = requireNotNull(response.body()!!)
                         val userId: Int = data.id
-                        toast("로그인 성공, 유저의 ID는 $userId 입니다")
+                        toast("로그인 성공")
                         val intent = Intent(this@LoginActivity, MainHomeActivity::class.java)
                         intent.putExtra("id", userId)
                         startActivity(intent)

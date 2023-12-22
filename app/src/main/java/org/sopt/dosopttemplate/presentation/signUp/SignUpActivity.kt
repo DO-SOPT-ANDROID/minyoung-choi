@@ -11,7 +11,6 @@ import org.sopt.dosopttemplate.module.ServicePool.authService
 import org.sopt.dosopttemplate.databinding.ActivitySignupBinding
 import org.sopt.dosopttemplate.presentation.login.LoginActivity
 import org.sopt.dosopttemplate.data.dto.request.RequestSignUpDto
-import org.sopt.dosopttemplate.data.dto.response.ResponseSignUpDto
 import org.sopt.dosopttemplate.utils.toast
 import retrofit2.Call
 import retrofit2.Response
