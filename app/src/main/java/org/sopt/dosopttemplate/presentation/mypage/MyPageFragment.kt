@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import org.sopt.dosopttemplate.MyApplication
 import org.sopt.dosopttemplate.databinding.FragmentMypageBinding
+import org.sopt.dosopttemplate.presentation.mainhome.MainHomeViewModel
 
 class MyPageFragment : Fragment() {
     private var _binding: FragmentMypageBinding? = null
     private val binding: FragmentMypageBinding get() = requireNotNull(_binding)
+    private val viewModel by viewModels<MainHomeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +41,7 @@ class MyPageFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        _binding = null
         super.onDestroyView()
     }
 }

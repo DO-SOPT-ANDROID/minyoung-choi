@@ -5,20 +5,16 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
-
 import org.sopt.dosopttemplate.R
-import org.sopt.dosopttemplate.module.ServicePool.authService
 import org.sopt.dosopttemplate.databinding.ActivitySignupBinding
 import org.sopt.dosopttemplate.presentation.login.LoginActivity
-import org.sopt.dosopttemplate.data.dto.request.RequestSignUpDto
 import org.sopt.dosopttemplate.utils.toast
-import retrofit2.Call
-import retrofit2.Response
 import java.util.regex.Pattern
 
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
+    private lateinit var signUpViewModel: SignUpViewModel
 
     //false 일 때 가입 불가
     //true 일 때 가입 가능
@@ -230,28 +226,15 @@ class SignUpActivity : AppCompatActivity() {
 //            return userInfoList
 //        }
 
-
-    private fun signUp() = with(binding) {
+    fun signUp() = with(binding) {
         val id = etSignupId.text.toString();
         val pw = etSignupPw.text.toString()
         val nickname = etSignupNickname.text.toString()
 
         btSignupButton.setOnClickListener {
-            authService.signUp(RequestSignUpDto(id, pw, nickname))
-                .enqueue(object : retrofit2.Callback<Unit> {
-                    override fun onResponse(
-                        call: Call<Unit>,
-                        response: Response<Unit>,
-                    ) {
-                        if (response.isSuccessful) {
-                            toast("회원가입 성공")
-                        }
-                    }
-
-                    override fun onFailure(call: Call<Unit>, t: Throwable) {
-                        toast("서버 에러 발생")
-                    }
-                })
+            while (signUpViewModel.signUpSuccess.value == null) {
+            }
+            toast(signUpViewModel.signUpSuccess.value!!)
         }
     }
 
