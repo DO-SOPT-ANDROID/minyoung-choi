@@ -25,7 +25,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-
         initLoginClickListener()
         //    val receivedUserInfoList = intent.getStringArrayListExtra("userInfoList")!!
 
@@ -63,9 +62,7 @@ class LoginActivity : AppCompatActivity() {
             //회원가입 페이지로 이동
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
-
         }
-
     }
 
     private fun initLoginClickListener() {
@@ -73,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
             val id = binding.etLoginId.text.toString()
             val password = binding.etLoginPw.text.toString()
             binding.btLogin.setOnClickListener {
-                loginViewModel.checkLoginAvailableFromServer(id, password)
+                loginViewModel.checkLoginFromServer(id, password)
                 checkLoginAvailableFromServer()
             }
         }
@@ -102,8 +99,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     /*
-
-
         authService.postLogin(RequestLoginDto(id, password))
             .enqueue(object : Callback<ResponseLoginDto> {
                 override fun onResponse(

@@ -21,7 +21,7 @@ class LoginViewModel() : ViewModel() {
     val loginState: StateFlow<LoginState> = _loginState.asStateFlow()
 
 
-    fun checkLoginAvailableFromServer(id: String, password: String) {
+    fun checkLoginFromServer(id: String, password: String) {
         viewModelScope.launch {
             val loginService = ApiFactory.create<AuthService>()
             kotlin.runCatching {
