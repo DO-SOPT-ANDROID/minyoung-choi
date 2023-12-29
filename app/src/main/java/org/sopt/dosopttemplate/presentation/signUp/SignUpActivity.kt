@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ActivitySignupBinding
@@ -14,7 +15,7 @@ import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
-    private lateinit var signUpViewModel: SignUpViewModel
+    private val signUpViewModel by viewModels<SignUpViewModel>()
 
     //false 일 때 가입 불가
     //true 일 때 가입 가능
@@ -37,13 +38,12 @@ class SignUpActivity : AppCompatActivity() {
             btSignupButton.setOnClickListener {
                 //가입 조건 확인
                 if (checkCondition() && signUpIdAvailable && signUpPwAvailable) {
-                    signUp()
+                    trySignUp()
 
-
+                    observeSignUpResult()
                     //토스트 띄우기
                     val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
 
-                    toast("회원가입 성공")
 //   도전과제 꼭 할거라서 남겨놨습니다!                 /*
 //                                //유저정보 -> 리스트로 구성
 //                                val userInfoList = UserInfoToListString()
@@ -51,7 +51,6 @@ class SignUpActivity : AppCompatActivity() {
 //                                sendUserInfo(intent, userInfoList)
 //                */
                     //액티비티 이동
-                    startActivity(intent)
 
                 } else {
                     toast("모든 정보를 입력해야합니다.")
@@ -226,17 +225,24 @@ class SignUpActivity : AppCompatActivity() {
 //            return userInfoList
 //        }
 
-    fun signUp() = with(binding) {
-        val id = etSignupId.text.toString();
-        val pw = etSignupPw.text.toString()
-        val nickname = etSignupNickname.text.toString()
-
-        btSignupButton.setOnClickListener {
-            while (signUpViewModel.signUpSuccess.value == null) {
-            }
-            toast(signUpViewModel.signUpSuccess.value!!)
+    fun trySignUp() {
+        with(binding) {
+            val id = etSignupId.text.toString();
+            val pw = etSignupPw.text.toString()
+            val nickname = etSignupNickname.text.toString()
+            signUpViewModel.signUp(id, pw, nickname)
         }
     }
 
+    fun observeSignUpResult() {
+        signUpViewModel.signUpSuccess.observe(this) {
+            if (it) {
+                toast("회원가입 성공!!")
+                startActivity(intent)
+            } else {
+                toast("가입 실패")
+            }
+        }
+    }
 }
 
