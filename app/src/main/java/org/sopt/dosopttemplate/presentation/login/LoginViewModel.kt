@@ -30,8 +30,7 @@ class LoginViewModel() : ViewModel() {
                 val body = it.body()
                 if (it.body() != null) {
                     _loginState.value = LoginState.Success(body!!)
-                    UserInfo.userInfoList.id = id
-                    UserInfo.userInfoList.pw = password
+                    UserInfo.toUser(id, password)
 
                 } else {
                     _loginState.value = LoginState.Error

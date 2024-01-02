@@ -8,4 +8,9 @@ object UserInfo {
         pw = "",
         mbti = "",
     )
+
+    fun toUser(inId: String, inPw: String) {
+        userInfoList.id = inId
+        userInfoList.pw = inPw
+    }
 }
