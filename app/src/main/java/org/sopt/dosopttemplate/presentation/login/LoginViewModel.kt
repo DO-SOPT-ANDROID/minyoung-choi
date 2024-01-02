@@ -17,19 +17,20 @@ class LoginViewModel() : ViewModel() {
     private val _loginSuccess: MutableLiveData<Boolean> = MutableLiveData()
     var loginSuccess: LiveData<Boolean> = _loginSuccess
 
-    private val _loginState = MutableStateFlow<LoginState>(LoginState.Loading)
+    private val _loginState = MutableStateFlow<LoginState>(LoginState.Unstarted)
     val loginState: StateFlow<LoginState> = _loginState.asStateFlow()
 
 
     fun checkLoginFromServer(id: String, password: String) {
         viewModelScope.launch {
             val loginService = ApiFactory.create<AuthService>()
+            _loginState.value = LoginState.Loading
             kotlin.runCatching {
                 loginService.postLogin(RequestLoginDto(id, password))
             }.onSuccess {
                 val body = it.body()
                 if (it.body() != null) {
-                    _loginState.value = LoginState.Success(body!!)
+                    _loginState.value = LoginState.Success(requireNotNull(body))
                     UserInfo.toUser(id, password)
 
                 } else {

@@ -90,9 +90,9 @@ class LoginActivity : AppCompatActivity() {
                         toast("로그인 실패")
                     }
 
-                    is LoginState.Loading -> {
-                        toast("로그인 중")
-                    }
+                    is LoginState.Loading -> {}
+
+                    else -> {}
                 }
             }
         }
